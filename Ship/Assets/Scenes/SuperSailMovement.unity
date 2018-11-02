@@ -478,6 +478,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  mass: 200
+  accelerationfactor: 5
+  speedLimit: 3
+  slowfactor: 5
+  turnfactor: 15
 --- !u!4 &1890731794 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 4ec936a9b1599694cbdea7af2df0115d,

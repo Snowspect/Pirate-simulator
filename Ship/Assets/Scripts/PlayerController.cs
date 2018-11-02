@@ -6,6 +6,12 @@ public class PlayerController : MonoBehaviour {
 
 	public float speed = 0;
 	private int n = 0;
+	public float mass;
+	public float accelerationfactor;
+	public float speedLimit;
+	public float slowfactor;
+	public float turnfactor;
+	bool moving;
 	float moveHorizontal;
 	float moveVertical;
 	private Vector3 lookDirection = Vector3.zero;
@@ -14,6 +20,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () 
 	{
 		ship = GetComponent<Rigidbody> ();
+		moving = false;
 	}
 	
 	// Update is called once per frame
@@ -92,39 +99,50 @@ public class PlayerController : MonoBehaviour {
 
 	void moveCharacter()
 	{
-			if(Input.GetKey(KeyCode.UpArrow))
-			{
-				
-				if(speed <= 15f)
-				{
-				if (speed < 2f)
+		if (Input.GetKey (KeyCode.UpArrow)) {
+			if (moving == false) {
+				speed = speed + 0.001f;
+				moving = true;
+			}
+			if (speed <= speedLimit) {
+				float speedfactor = accelerationfactor / mass;
+				speed = speed + speedfactor;
+
+				//An attempt on "gradual speed increase"
+				/*if (speed < 2f)
 					speed = speed + 0.01f;
 					//speed = speed + 0.05f;
 				if (speed < 5f && speed > 2f)
 					speed = speed + 0.07f;
-//					speed = speed + 0.2f;
-//					speed = speed + speed + 0.2f; //can be used for burst skill
-				}
+					speed = speed + 0.2f;
+					speed = speed + speed + 0.2f; //can be used for burst skill
+				*/
 			}
+		}
+		// Down arrow impl.
+		/*
 			else if (Input.GetKey(KeyCode.DownArrow))
 			{
 				if (speed > 0f)
 				{
 					speed = speed - 0.2f;
 				}
-			}	
-			else if(!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
-			{
-				if(speed > 0f)
-				{
-					//speed = speed - 0.01f; //slows down linearly
-				if(speed >= 2f) 
+			}
+
+		*/	
+			else if (!Input.GetKey (KeyCode.UpArrow) && !Input.GetKey (KeyCode.DownArrow)) {
+			if (speed > 0f) {
+				float decreasefactor = slowfactor / mass;
+				speed = speed * 0.99f;
+				//speed = speed - 0.01f; //slows down linearly
+				/*if(speed >= 2f) 
 					speed = speed - 0.02f*speed;
 				if (speed < 2 && speed > 0f)
 					speed = speed - 0.04f * speed;
-				}
+				}*/
 			}
-			if (speed < 0f) 
+		}
+		if (speed < 0.001f) 
 			{
 				speed = 0f;
 			}
@@ -133,13 +151,19 @@ public class PlayerController : MonoBehaviour {
 
 	void RotateCharacter()
 	{
-		if(Input.GetKey(KeyCode.LeftArrow))
+		/*
+		 * turnfactor should be based on mass and a procentage factor
+		 * procentage factor should be based on buffs.
+		 */
+		if(Input.GetKey(KeyCode.LeftArrow) && speed != 0) //rotation needs to be based on speed!. ALSO, implement speedup in relation to mass in the above code. //display backwards.
 		{
-			transform.Rotate (transform.up, -50.0f * Time.deltaTime, Space.World);
+			float rotationfactor = (turnfactor * speed);
+			transform.Rotate (transform.up, (-1*rotationfactor) * Time.deltaTime, Space.World);
 		}
-		if (Input.GetKey (KeyCode.RightArrow)) 
+		if (Input.GetKey (KeyCode.RightArrow) && speed != 0)
 		{
-			transform.Rotate (transform.up, 50.0f * Time.deltaTime, Space.World);	
+			float rotationfactor = turnfactor * speed;
+			transform.Rotate (transform.up, rotationfactor * Time.deltaTime, Space.World);
 		}
 	}
 }
