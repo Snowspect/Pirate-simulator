@@ -139,7 +139,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1708185692658834}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6794203fd630b08459ed83f1bf30e17d, type: 3}
   m_Name: 
@@ -163,3 +163,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  mass: 0
+  accelerationfactor: 0
+  maximumSpeed: 0
+  minimumSpeed: 0
+  minimumSpeedTrigger: 0
+  slowfactor: 0
+  turnfactor: 0
+  speedbuff: 0
+  minimumRotationSpeed: 0
