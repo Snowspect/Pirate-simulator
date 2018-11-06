@@ -81,9 +81,10 @@ public class PlayerController : MonoBehaviour {
 		//moves the ship in relation to the world, taking the ships internal coordinate system into consideration (found through experimentation)
 		transform.Translate (transform.forward * speed * Time.deltaTime, Space.World); //the coordinate system of the ship has switched horizontal with right and up so we do the same.
 
-		lookDirection += new Vector3(0f,0f,0f);
+/*		lookDirection += new Vector3(0f,0f,0f);
 		Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
 		transform.rotation = Quaternion.LerpUnclamped(transform.rotation, targetRotation, speed*Time.deltaTime);
+		*/
 	}
 
 	//allows the ship to curve in left or right direction
@@ -91,7 +92,6 @@ public class PlayerController : MonoBehaviour {
 	{
 		/*
 		 * TODO
-		 * turnfactor should be based on mass and a procentage factor
 		 * procentage factor should be based on buffs.
 		 * rotation needs to be based on speed!. ALSO, implement speedup in relation to mass in the above code. //display backwards.
 		 */
@@ -104,17 +104,20 @@ public class PlayerController : MonoBehaviour {
 			float rotationfactor = turnfactor;
 			//-1*rotation factor is to make it turn left, if we remove it, it turns right.
 			//space.World as we want to move it accordingly to the coordinate system in the world.
+
 			transform.Rotate (transform.up, (-1*rotationfactor) * Time.deltaTime, Space.World);
 		}
 		if (Input.GetKey (KeyCode.RightArrow) && speed != minimumSpeed && speed >= minimumRotationSpeed)
 		{
 //			float rotationfactor = (turnfactor - (speed));
-			float rotationfactor = (turnfactor / speed);
+//			float rotationfactor = (turnfactor / speed);
 //			float rotationfactor = turnfactor * speed;
+			float rotationfactor = turnfactor;
+
 			transform.Rotate (transform.up, rotationfactor * Time.deltaTime, Space.World);
 		}
-
 	}
+
 
 
 
