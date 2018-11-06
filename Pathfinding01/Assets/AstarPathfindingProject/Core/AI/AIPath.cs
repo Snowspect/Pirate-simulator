@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Pathfinding {
 	using Pathfinding.RVO;
 	using Pathfinding.Util;
-
+    
 	/// <summary>
 	/// AI for following paths.
 	/// This AI is the default movement script which comes with the A* Pathfinding Project.
@@ -79,7 +79,7 @@ namespace Pathfinding {
 		/// The higher it is, the faster the character will be able to rotate.
 		/// </summary>
 		[UnityEngine.Serialization.FormerlySerializedAs("turningSpeed")]
-		public float rotationSpeed = 360;
+		public float rotationSpeed = 10;
 
 		/// <summary>Distance from the end of the path where the AI will start to slow down</summary>
 		public float slowdownDistance = 0.6F;
