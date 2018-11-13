@@ -8,7 +8,7 @@ public class MapGenerator : MonoBehaviour
 
     public enum DrawMode { NoiseMap, ColorMap, Mesh };
     public DrawMode drawMode;
-
+    public Noise.NormalizeMode normalizeMode;
     public const int mapChunkSize = 241; // 241-1 = 240 and is easily dividable
     [Range(0, 6)]
     public int meshSimplification;
@@ -36,7 +36,7 @@ public class MapGenerator : MonoBehaviour
 
     public void DrawMapInEditor()
     {
-        MapData mapData = GenerateMapData();
+        MapData mapData = GenerateMapData(Vector2.zero);
         MapDisplay display = FindObjectOfType<MapDisplay>();
 
         if (drawMode == DrawMode.NoiseMap)
@@ -48,35 +48,35 @@ public class MapGenerator : MonoBehaviour
 
     }
 
-    public void RequestMapData(Action<MapData> callBack)
+    public void RequestMapData(Vector2 centre, Action<MapData> callBack)
     {
         ThreadStart threadStart = delegate
         {
-            MapDataThread(callBack);
+            MapDataThread(centre, callBack);
         };
 
         new Thread(threadStart).Start();
     }
-    void MapDataThread(Action<MapData> callBack)
+    void MapDataThread(Vector2 centre, Action<MapData> callBack)
     {
-        MapData mapData = GenerateMapData();
+        MapData mapData = GenerateMapData(centre);
         lock (mapDataThreadInfoQueue)
         {
             mapDataThreadInfoQueue.Enqueue(new MapThreadInfo<MapData>(callBack, mapData));
         }
         
     }
-    public void RequestMeshData(MapData mapData, Action<MeshData> callback)
+    public void RequestMeshData(MapData mapData, int lod, Action<MeshData> callback)
     {
         ThreadStart threadStart = delegate {
-            MeshDataThread(mapData, callback);
+            MeshDataThread(mapData, lod, callback);
         };
         new Thread(threadStart).Start();
     }
 
-    void MeshDataThread(MapData mapData, Action<MeshData> callBack)
+    void MeshDataThread(MapData mapData, int lod,  Action<MeshData> callBack)
     {
-        MeshData meshData = MeshGenerator.GenerateTerrainMesh(mapData.heightMap,meshHeightMultiplier,meshHeightCurve,meshSimplification);
+        MeshData meshData = MeshGenerator.GenerateTerrainMesh(mapData.heightMap,meshHeightMultiplier,meshHeightCurve,lod);
         lock (meshDataThreadInfoQueue)
         {
             meshDataThreadInfoQueue.Enqueue(new MapThreadInfo<MeshData>(callBack, meshData));
@@ -101,9 +101,9 @@ public class MapGenerator : MonoBehaviour
             }
         }
     }
-    MapData GenerateMapData()
+    MapData GenerateMapData(Vector2 centre)
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistance, lacunarity, offset);
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistance, lacunarity, centre+offset,normalizeMode);
 
         Color[] colorMap = new Color[mapChunkSize * mapChunkSize];
         for (int y = 0; y < mapChunkSize; y++)
@@ -151,11 +151,12 @@ public class MapGenerator : MonoBehaviour
                 {
                     for (int i = 0; i < regions.Length; i++)
                     {
-                        if (currentHeight <= regions[i].height)
+                        if (currentHeight >= regions[i].height)
                         {
                             colorMap[y * mapChunkSize + x] = regions[i].color;
-                            break;
                         }
+                        else
+                            break;
                     }
                 }
                 
