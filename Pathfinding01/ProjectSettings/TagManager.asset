@@ -7,6 +7,7 @@ TagManager:
   - light
   - medium
   - heavy
+  - cannonball
   layers:
   - Default
   - TransparentFX

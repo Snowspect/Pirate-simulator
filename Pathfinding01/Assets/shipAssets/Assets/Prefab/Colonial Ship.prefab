@@ -961,6 +961,7 @@ GameObject:
   - component: {fileID: 114359747379202014}
   - component: {fileID: 114724261546852120}
   - component: {fileID: 114337765274909530}
+  - component: {fileID: 114960840891145900}
   m_Layer: 0
   m_Name: Colonial Ship
   m_TagString: light
@@ -4654,6 +4655,17 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &114960840891145900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873577973735926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed48c3dd45cc0f445bbbfd91cfa3fd65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &224322104910487216
 RectTransform:
   m_ObjectHideFlags: 1

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
-	public float speed;
-	public float mass;
+	public static float speed;
+	public static float mass;
 	public float accelerationfactor;
 	public float maximumSpeed;
 	public float minimumSpeed;
@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour {
 	public float minimumRotationSpeed;
 	float moveHorizontal;
 	float moveVertical;
-	private Vector3 lookDirection = Vector3.zero;
-	Rigidbody ship;
+//	private Vector3 lookDirection = Vector3.zero;
+//	Rigidbody ship;
 
 
 	// Use this for initialization
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		setShipStandard ();
 
-		ship = GetComponent<Rigidbody> ();
+		//ship = GetComponent<Rigidbody> ();
 	}
 	
 	// Update is called once per frame
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour {
 			//slowfactor = 
 			//			speedbuff = 0f;
 			turnfactor = 7000f / mass;
-			RectTransform t = this.GetComponent<RectTransform> ();
+			//RectTransform t = this.GetComponent<RectTransform> (); //not sure why this is here
 
 		}
 		if (this.tag.Equals("medium"))
@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour {
 			//slowfactor = 
 			//			speedbuff = 0f;
 			turnfactor = 7000f / mass;
-
+			//ShipShooting.canons.Capacity = 4;
 		}
 		if (this.tag.Equals("heavy"))
 		{
@@ -161,6 +161,7 @@ public class PlayerController : MonoBehaviour {
 			//slowfactor = 
 			//			speedbuff = 0f;
 			turnfactor = 7000f / mass;
+			//ShipShooting.canons.Capacity = 6;
 		}
 	}
 }

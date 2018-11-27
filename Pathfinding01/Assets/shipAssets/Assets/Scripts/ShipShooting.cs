@@ -7,26 +7,34 @@ public class ShipShooting : MonoBehaviour {
 	public float m_MinLaunchForce = 15f;
 	public float m_MaxLaunchForce = 30f;
 	public float m_MaxChargeTime = 0.75f;
-	public Transform m_FireTransform;
+	public List<Transform> canons;
+	public List<Transform> canons2;
+	public Transform m_FireTransform_rightSide_back;
+	public Transform m_FireTransform_rightSide_mid;
+	public Transform m_FireTransform_rightSide_front;
 	public int m_PlayerNumber = 1;
 	public Rigidbody m_cannonball;
 
 	private string m_FireButton;
 	private float m_CurrentLaunchForce;
-	private float m_ChargeSpeed;
+	//private float m_ChargeSpeed;
 	private bool m_Fired;
 
 	private void OnEnable()
 	{
 		m_CurrentLaunchForce = m_MinLaunchForce; //so we reset the ship when it is remade
+
 	}
 
 	// Use this for initialization
 	void Start () 
 	{
 		m_FireButton = "Fire" + m_PlayerNumber;
-
-		m_ChargeSpeed = (m_MaxLaunchForce - m_MinLaunchForce) / m_MaxChargeTime;
+		canons = new List<Transform> (2);
+		canons2.Add(m_FireTransform_rightSide_back);
+		canons2.Add(m_FireTransform_rightSide_front);
+		canons2.Add(m_FireTransform_rightSide_mid);
+		//m_ChargeSpeed = (m_MaxLaunchForce - m_MinLaunchForce) / m_MaxChargeTime;
 	}
 	
 	// Update is called once per frame
@@ -35,7 +43,8 @@ public class ShipShooting : MonoBehaviour {
 		if (m_CurrentLaunchForce >= m_MaxLaunchForce && !m_Fired) {
 			//at max charge, not fired
 			m_CurrentLaunchForce = m_MaxLaunchForce;
-			Fire();
+			//Fire();
+			Fire2();
 		} else if (Input.GetButtonDown (m_FireButton)) {
 			//have we pressed the fire for the first time?
 			m_Fired = false; 
@@ -48,7 +57,8 @@ public class ShipShooting : MonoBehaviour {
 		} else if (Input.GetButtonUp (m_FireButton) && !m_Fired) 
 		{
 			//we released the button, having not fired yet
-			Fire();
+			//Fire();
+			//Fire2 ();
 		}
 	}
 
@@ -56,10 +66,24 @@ public class ShipShooting : MonoBehaviour {
 	{
 		m_Fired = true;
 		//instanciate a canonBall instance at the position and rotation of our fireTransform
-		Rigidbody canonBallInstance = Instantiate (m_cannonball, m_FireTransform.position, m_FireTransform.rotation) as Rigidbody;
-
-
-		canonBallInstance.velocity = m_CurrentLaunchForce * m_FireTransform.forward;
+		Rigidbody canonBallInstance = Instantiate (m_cannonball, m_FireTransform_rightSide_back.position, m_FireTransform_rightSide_back.rotation) as Rigidbody;
+		canonBallInstance.velocity = m_CurrentLaunchForce * m_FireTransform_rightSide_back.forward;
 		m_CurrentLaunchForce = m_MinLaunchForce;
+		Rigidbody canonBallInstance1 = Instantiate (m_cannonball, m_FireTransform_rightSide_mid.position, m_FireTransform_rightSide_mid.rotation) as Rigidbody;
+		canonBallInstance1.velocity = m_CurrentLaunchForce * m_FireTransform_rightSide_mid.forward;
+		m_CurrentLaunchForce = m_MinLaunchForce;
+		Rigidbody canonBallInstance2 = Instantiate (m_cannonball, m_FireTransform_rightSide_front.position, m_FireTransform_rightSide_front.rotation) as Rigidbody;
+		canonBallInstance2.velocity = m_CurrentLaunchForce * m_FireTransform_rightSide_front.forward;
+		m_CurrentLaunchForce = m_MinLaunchForce;
+	}
+	private void Fire2()
+	{
+		m_Fired = true;
+		foreach (var canon in canons2) {
+			Rigidbody canonBallInstance = Instantiate (m_cannonball, canon.position, canon.rotation) as Rigidbody;
+			canonBallInstance.velocity = m_CurrentLaunchForce * canon.forward;
+			m_CurrentLaunchForce = m_MinLaunchForce;
+
+		}
 	}
 }
