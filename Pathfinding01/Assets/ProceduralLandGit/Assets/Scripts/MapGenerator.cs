@@ -33,6 +33,11 @@ public class MapGenerator : MonoBehaviour
         falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize);
     }
     */
+
+    private void Awake()
+    {
+        textureData.UpdateMeshHeights(terrainMaterial, terrainData.minHeight, terrainData.maxHeight);
+    }
     void OnValuesUpdated()
     {
         if (!Application.isPlaying)
@@ -48,6 +53,7 @@ public class MapGenerator : MonoBehaviour
 
     public void DrawMapInEditor()
     {
+        textureData.UpdateMeshHeights(terrainMaterial, terrainData.minHeight, terrainData.maxHeight);
         MapData mapData = GenerateMapData(Vector2.zero);
         MapDisplay display = FindObjectOfType<MapDisplay>();
 
@@ -192,7 +198,6 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
-        textureData.UpdateMeshHeights(terrainMaterial, terrainData.minHeight, terrainData.maxHeight);
         return new MapData(noiseMap);//, colorMap);
     }
 

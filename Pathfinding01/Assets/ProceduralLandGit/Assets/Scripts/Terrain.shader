@@ -23,7 +23,8 @@
 		float baseBlends[maxLayerCount];
 		float baseColorStrength[maxLayerCount];
 		float baseTextureScales[maxLayerCount];
-		float minHeight, maxHeight;
+		float minHeight;
+		float maxHeight;
 
 		sampler2D testTexture;
 		float testScale;
