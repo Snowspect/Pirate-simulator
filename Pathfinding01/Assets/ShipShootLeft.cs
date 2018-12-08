@@ -21,48 +21,31 @@ public class ShipShootLeft : MonoBehaviour {
 	void Update () { 
 		Trigger (); 
 	} 
-
-	//TRIGGERING LEFT SIDE
+		
+	/// <summary>
+	/// TRIGGER FUNCTIONALITY FOR SHIP SHOOTING FROM LEFT SIDE
+	/// </summary>
 	private void Trigger() 
 	{ 
 		if (rechargeLeftSideTime <= 0) 
 		{ //that is, if the recharging is done, make sure we can fire again 
 			m_FiredLeft = false; 
 		} 
-
-		/*		if (rechargeRightSideTime <= 0) 
-		{ 
-			m_FiredRight = false;
-		} 
-*/
-		if (m_FiredLeft == false && Input.GetButton (m_FireButton1)) //The cannonballs haven't been fired and you press down "Ctrl" (To edit what button, either use functionality code or go into edit -> project settings -> input 
-		{
+		if (m_FiredLeft == false && Input.GetButton (m_FireButton1)) 
+		{ //The cannonballs haven't been fired and you press down "Ctrl" 
+		  // (To edit what button, either use functionality code or go into edit -> project settings -> input 
 			fireLeft ();
 			rechargeLeftSideTime = 3; 
 			m_FiredLeft = true;
 		}
-
-		/*		if (m_FiredRight == false && Input.GetButton (m_FireButton2)) //Alt
-		{ // that is, if recharge is done and the above if statement is executed
-			fireRight();
-			rechargeRightSideTime = 3; 
-			m_FiredRight = true; 
-		} 
-*/
 		else if (m_FiredLeft == true) 
 		{ //if we fired the button, begin the recharging process
 			rechargeLeftSide (); 
 		} 
-
-		/*		else if (m_FiredRight == true) 
-		{ 
-			rechargeRightSide ();	
-		} 
-*/
 	} 
 
 	/// <summary>
-	/// SHOOTING LEFT SIDE
+	/// SHOOTING FROM LEFT SIDE OF SHIP
 	/// </summary>
 	private void fireLeft() 
 	{ 
@@ -74,7 +57,7 @@ public class ShipShootLeft : MonoBehaviour {
 	} 
 
 	/// <summary>
-	/// RECHARGING LEFT SIDE
+	/// RECHARGING LEFT SIDE OF SHIP
 	/// </summary>
 	private void rechargeLeftSide() 
 	{ 
