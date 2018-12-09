@@ -34,17 +34,20 @@ public class Toggled : MonoBehaviour, IPointerClickHandler {
 		{
 			medium.isOn = false; 
 			heavy.isOn = false;	
-			activeShip = "light";
+			dataHolder.shipName = "light";
+			Debug.Log(dataHolder.shipName);
 		} else if (this.name.Equals ("medium toggle")) 
 		{
 			light.isOn = false; 
 			heavy.isOn = false; 
-			activeShip = "medium";
+			dataHolder.shipName = "medium";
+			Debug.Log(dataHolder.shipName);
 		} else if (this.name.Equals ("heavy toggle")) 
 		{
 			light.isOn = false; 
 			medium.isOn = false; 
-			activeShip = "heavy";
+			dataHolder.shipName = "heavy";
+			Debug.Log(dataHolder.shipName);
 		}
 	}
 	#endregion

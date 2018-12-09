@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MapGeneratorScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Scenes/Start Game Scene.unity
+    path: Assets/Scenes/Scenes/Choose ship and buff.unity
     guid: 756e3acb6623997409ed9cf38abc1013
+  - enabled: 1
+    path: Assets/Scenes/Scenes/AI Procedural.unity
+    guid: 90bad4b1e87bd0946ba653dc7f5e999d
   m_configObjects: {}
