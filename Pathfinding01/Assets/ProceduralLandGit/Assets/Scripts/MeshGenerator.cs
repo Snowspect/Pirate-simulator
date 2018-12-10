@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class MeshGenerator  {
+    public const int numberOfSupportedLODs = 5;
+    public const int numSupportedChunkSizes = 9;
+    public static readonly int[] supportedChunkSizes = {48,72,96,120,144,168,192,216,240};
 
 	public static MeshData GenerateTerrainMesh(float[,] heightMap, float heightMultiplier, AnimationCurve _heightCurve, int lod)
     {
@@ -68,6 +71,8 @@ public static class MeshGenerator  {
                 vertexIndex++;
             }
         }
+
+        meshData.BakeNormals();
         return meshData;
     }
 }
@@ -77,6 +82,7 @@ public class MeshData
     Vector3[] vertices;
     int[] triangles;
     Vector2[] uvs;
+    Vector3[] bakedNormals;
     Vector3[] borderVertices;
     int[] borderTriangles;
     int triangleIndex;
@@ -177,13 +183,18 @@ public class MeshData
         return Vector3.Cross(sideAB, sideAC).normalized;
     }
 
+    public void BakeNormals()
+    {
+        bakedNormals = CalculateNormals();
+    }
+
     public Mesh CreateMesh()
     {
         Mesh mesh = new Mesh();
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.uv = uvs;
-        mesh.normals = CalculateNormals();
+        mesh.normals = bakedNormals;
         return mesh;
     }
 }
