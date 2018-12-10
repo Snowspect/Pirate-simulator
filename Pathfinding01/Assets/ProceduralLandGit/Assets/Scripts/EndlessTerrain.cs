@@ -16,7 +16,8 @@ public class EndlessTerrain : MonoBehaviour {
     static MapGenerator mapGenerator;
     public static Vector2 viewerPosition;
     private Vector2 viewerPositionOld;
-
+    private bool chunksAllowed = true;
+    public bool endless = false;
     int chunkSize;
     int chunksVisibleInViewDistance;
 
@@ -25,7 +26,7 @@ public class EndlessTerrain : MonoBehaviour {
     void Start()
     {
         mapGenerator = FindObjectOfType<MapGenerator>();
-        chunkSize = MapGenerator.mapChunkSize - 1;
+        chunkSize = mapGenerator.mapChunkSize - 1;
         maxViewDistance = detailLevels[detailLevels.Length - 1].visibleDstThreshold;
         chunksVisibleInViewDistance = Mathf.RoundToInt(maxViewDistance / chunkSize);
         UpdateVisibleChunks();
@@ -44,7 +45,9 @@ public class EndlessTerrain : MonoBehaviour {
 
     void UpdateVisibleChunks()
     {
-        for(int i = 0; i < terrainsVisibleLastUpdate.Count; i++)
+        if (!chunksAllowed)
+            return;
+        for (int i = 0; i < terrainsVisibleLastUpdate.Count; i++)
         {
             terrainsVisibleLastUpdate[i].SetVisible(false);
         }
@@ -64,10 +67,12 @@ public class EndlessTerrain : MonoBehaviour {
                 }
                 else
                 {
-                    terrainChunkDictionary.Add(viewedChunkCoord, new TerrainChunk(viewedChunkCoord,chunkSize, detailLevels, transform,mapMaterial));
+                        terrainChunkDictionary.Add(viewedChunkCoord, new TerrainChunk(viewedChunkCoord,chunkSize, detailLevels, transform,mapMaterial));
                 }
             }
         }
+        if (!endless)
+            chunksAllowed = false;
     }
 
     public class TerrainChunk

@@ -8,9 +8,11 @@ public class MapGenerator : MonoBehaviour
 
     public enum DrawMode { NoiseMap, ColorMap, Mesh,Falloff };
     public DrawMode drawMode;
-    
-    public const int mapChunkSize = 239; // 241-1 = 240 and is easily dividable
-    [Range(0, 6)]
+
+    [Range(0, MeshGenerator.numSupportedChunkSizes - 1)]
+    public int chunkSizeIndex;
+
+    [Range(0, MeshGenerator.numberOfSupportedLODs-1)]
     public int meshSimplification;
 
     public TerrainData terrainData;
@@ -36,6 +38,7 @@ public class MapGenerator : MonoBehaviour
 
     private void Awake()
     {
+        textureData.ApplyToMaterial(terrainMaterial);
         textureData.UpdateMeshHeights(terrainMaterial, terrainData.minHeight, terrainData.maxHeight);
     }
     void OnValuesUpdated()
@@ -50,6 +53,13 @@ public class MapGenerator : MonoBehaviour
     {
         textureData.ApplyToMaterial(terrainMaterial);
     }
+    public int mapChunkSize
+    {
+        get
+        {
+            return MeshGenerator.supportedChunkSizes[chunkSizeIndex];
+        }
+    } // 241-1 = 240 and is easily dividable
 
     public void DrawMapInEditor()
     {
@@ -103,6 +113,7 @@ public class MapGenerator : MonoBehaviour
             meshDataThreadInfoQueue.Enqueue(new MapThreadInfo<MeshData>(callBack, meshData));
         }
     }
+
     void Update()
     {
         if(mapDataThreadInfoQueue.Count > 0)
