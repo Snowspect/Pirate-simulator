@@ -22,28 +22,41 @@ public class ChoiceBuff : MonoBehaviour {
 
 		//Adds listener
 		leftChoiceButton.onClick.AddListener(() => ButtonClicked(1));
-		rightChoiceButton.onClick.AddListener(() => ButtonClicked(2));
-	}
+        Debug.Log("Test");
+        rightChoiceButton.onClick.AddListener(() => ButtonClicked(2));
+
+    }
 	
 	// Update is called once per frame
 	void Update () 
 	{		
 		
 	}
+   
 
 	/// <summary>
 	/// CALLED WHEN BUTTON IS CLICKED
 	/// </summary>
-	public void ButtonClicked(int buttonNr)
-	{ 
-		//this gets triggered twice for some reason, tried to disable leftChoiceButton listener to see if it would only print once when clicked but still prints twice.
-		if (buttonNr == 1) { 
-			dataHolder.buffNr = leftBuff.text.Substring (0, 12); 
-			Debug.Log (dataHolder.buffNr); 
-		} else 
-		{ 
-			dataHolder.buffNr = rightBuff.text.Substring (0, 12); 
-			Debug.Log (dataHolder.buffNr); 
-		} 
-	} 
+	public void ButtonClicked(int buttonNumb)
+	{
+        //this gets triggered twice for some reason, tried to disable leftChoiceButton listener to see if it would only print once when clicked but still prints twice.
+        //left side
+        if (buttonNumb == 1) {
+            UserData.shipBuffList.Add(Buffs.tempLeftBuff);
+            UserData.shipDebuffList.Add(Buffs.tempLeftDebuff);
+            Debug.Log(Buffs.tempLeftBuff.getDescription());
+            Debug.Log(Buffs.tempLeftDebuff.getDescription());
+            
+        }
+        //right side
+        if (buttonNumb == 2)
+		{
+            UserData.shipBuffList.Add(Buffs.tempRightBuff);
+            UserData.shipDebuffList.Add(Buffs.tempRightDebuff);
+            Debug.Log(Buffs.tempRightBuff.getDescription());
+            Debug.Log(Buffs.tempRightDebuff.getDescription());
+        }
+        leftChoiceButton.interactable = false;
+        rightChoiceButton.interactable = false;
+    } 
 } 

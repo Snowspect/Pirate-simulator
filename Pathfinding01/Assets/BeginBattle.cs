@@ -23,8 +23,8 @@ public class BeginBattle : MonoBehaviour {
 
 	public void ButtonClicked()
 	{
-		dataHolder.firstScene = true; 
-		Debug.Log ("Loading new scene and first scene bool is : " + dataHolder.firstScene);
+		UserData.firstScene = true; 
+		Debug.Log ("Loading new scene and first scene bool is : " + UserData.firstScene);
 		SceneManager.LoadScene ("AI Procedural", LoadSceneMode.Single);
 	}
 }

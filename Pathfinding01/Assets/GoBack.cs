@@ -22,7 +22,7 @@ public class GoBack : MonoBehaviour {
 
 	public void ButtonClicked () 
 	{ 
-		Debug.Log ("This iiiiss the value!!!: " + dataHolder.firstScene);
+		Debug.Log ("This iiiiss the value!!!: " + UserData.firstScene);
 		SceneManager.LoadScene ("Choose ship and buff", LoadSceneMode.Single); 
 	} 
 } 

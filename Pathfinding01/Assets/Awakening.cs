@@ -17,7 +17,7 @@ public class Awakening : MonoBehaviour {
 		medium = GameObject.Find ("medium toggle").GetComponent<Toggle> (); 
 		heavy = GameObject.Find ("heavy toggle").GetComponent<Toggle> (); 
 
-		if (dataHolder.firstScene == true) 
+		if (UserData.firstScene == true) 
 		{
 			Debug.Log ("HALLLOOOOO"); 
 			light.gameObject.SetActive (false); 
