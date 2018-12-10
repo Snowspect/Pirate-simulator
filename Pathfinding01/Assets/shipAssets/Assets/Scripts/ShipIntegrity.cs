@@ -38,8 +38,9 @@ public class ShipIntegrity : MonoBehaviour {
 
 	/// <summary>
 	/// TRIGGERS WHILE SHIP TOUCHES OTHER COLLIDER CONSTANTLY
+	/// CHANGE TO INTEGRITY AS BUFF TO MINIMIZE DAMAGE.
 	/// </summary>
-	void OnTriggerStay(Collider other) 
+/*	void OnTriggerStay(Collider other) 
 	{ 
 		if (other.tag.Equals ("light") || other.tag.Equals ("medium") || other.tag.Equals ("heavy")) 
 		{ 
@@ -49,7 +50,7 @@ public class ShipIntegrity : MonoBehaviour {
 				integrity = integrity - (shipCollisionDamage * 0.04f); 
 			} 
 
-			else if (integrity <= 1) 
+			else if (integrity <= 1) //if integrity (armor) 
 			{ 
 				Debug.Log ("Ship has no integrity left"); 
 				Debug.Log ("ship taking maximum collision damage"); 
@@ -57,21 +58,24 @@ public class ShipIntegrity : MonoBehaviour {
 			} 
 		} 
 	} 
+*/ 
 
-	/// <summary>
-	/// TRIGGERS WHEN A COLLIDER HITS ANOTHER COLLIDER FIRST TIME
-	/// </summary>
+	/// <summary> 
+	/// TRIGGERS WHEN A COLLIDER HITS ANOTHER COLLIDER FIRST TIME 
+	/// </summary> 
 	void OnTriggerEnter(Collider other) 
 	{ 
 		if (other.tag.Equals("cannonball")) 
 		{ 
-			health = health - (cannonballDmg / integrity); 
-			integrity = integrity - 0.5f; 
+			health = health - (cannonballDmg - integrity); //recieves more cannonball for each hit.
+			integrity = integrity - (integrity / cannonballDmg); //removes less armor over each hit.
+			//integrity = integrity - 0.5f; 
 		} 
 		if (other.tag.Equals ("light") || other.tag.Equals ("medium") || other.tag.Equals ("heavy")) 
 		{ 
 			//health = health - (0.8f / integrity); 
-			integrity = integrity - shipCollisionDamage; 
+			integrity = integrity - (integrity / cannonballDmg);
+			//integrity = integrity - shipCollisionDamage; 
 		} 
 	} 
 } 
