@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1404979850276352}
+  m_IsPrefabAsset: 1
+--- !u!1 &1404979850276352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4017604787239728}
+  - component: {fileID: 114721080412521656}
+  - component: {fileID: 114948116255762152}
+  - component: {fileID: 114781885206210698}
+  m_Layer: 0
+  m_Name: Map Generatorv4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4017604787239728
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1404979850276352}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114721080412521656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1404979850276352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f4969039ffc024bb864e0713335976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawMode: 2
+  chunkSizeIndex: 8
+  meshSimplification: 0
+  terrainData: {fileID: 11400000, guid: 7590fc6599c33184f804691fd1f8e185, type: 2}
+  noiseData: {fileID: 11400000, guid: b388ae970f575c649982a266b4c591fa, type: 2}
+  textureData: {fileID: 11400000, guid: 9bc6888b0e0646e4e90f6fa464a568ff, type: 2}
+  terrainMaterial: {fileID: 2100000, guid: 081f80cb0e1ffd74c816d974fec1b6b6, type: 2}
+  autoUpdate: 1
+  region: 1
+  aiMove: 0
+  heightColors:
+    blendMode: 0
+    keys:
+    - color: {r: 0, g: 0.018973153, b: 0.6037736, a: 1}
+      time: 0.37463415
+    - color: {r: 0.22151783, g: 0.121381775, b: 0.86222637, a: 1}
+      time: 0.58634144
+    - color: {r: 0, g: 0.4117647, b: 0.99215686, a: 1}
+      time: 0.64585364
+    - color: {r: 0.97895163, g: 0.9811321, b: 0.5322179, a: 1}
+      time: 0.6917073
+    - color: {r: 0.24959952, g: 0.745283, b: 0.36560586, a: 1}
+      time: 0.7131707
+    - color: {r: 0.09380562, g: 0.6415094, b: 0.13413832, a: 1}
+      time: 0.7365854
+    - color: {r: 0.6792453, g: 0.5039256, b: 0.20825918, a: 1}
+      time: 0.81463414
+    - color: {r: 0.5283019, g: 0.38077527, b: 0.042363837, a: 1}
+      time: 0.93413174
+    - color: {r: 1, g: 1, b: 1, a: 1}
+      time: 1
+--- !u!114 &114781885206210698
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1404979850276352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05547edd0679cc140967fdc58bc9d8f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detailLevels:
+  - lod: 0
+    visibleDstThreshold: 100
+  viewer: {fileID: 0}
+  mapMaterial: {fileID: 2100000, guid: 081f80cb0e1ffd74c816d974fec1b6b6, type: 2}
+  endless: 0
+--- !u!114 &114948116255762152
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1404979850276352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa33b4b8cb367d04db2f9b3dfdd2e881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textureRender: {fileID: 0}
+  meshFilter: {fileID: 0}
+  meshRenderer: {fileID: 0}

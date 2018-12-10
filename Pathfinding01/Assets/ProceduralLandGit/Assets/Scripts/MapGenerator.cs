@@ -5,6 +5,7 @@ using System;
 using System.Threading;
 public class MapGenerator : MonoBehaviour
 {
+	public List<NoiseData> noiseLevels; 
 
     public enum DrawMode { NoiseMap, ColorMap, Mesh,Falloff };
     public DrawMode drawMode;
@@ -16,7 +17,7 @@ public class MapGenerator : MonoBehaviour
     public int meshSimplification;
 
     public TerrainData terrainData;
-    public NoiseData noiseData;
+    private NoiseData noiseData;
     public TextureData textureData;
     public Material terrainMaterial;
 
@@ -38,9 +39,28 @@ public class MapGenerator : MonoBehaviour
 
     private void Awake()
     {
+		string mapName = "Map";
+		int levelChoice = 9; //must be between 1-10 //this should be dependent on userData variable
+
+		noiseData = noiseLevels [levelChoice-1]; //To meet the condition of the zero-indexed list
+
+		MeshFilter ms;
+		foreach (var level in noiseLevels)
+		{ 
+			if (level.name.Equals ("Level0" + levelChoice)) {
+				mapName = mapName + 0 + levelChoice;
+				Debug.Log ("mapname in first if statement : " + mapName);
+				ms = GameObject.Find (mapName).GetComponent<MeshFilter> (); 
+				ms.GetComponent<Renderer> ().enabled = true; 
+				ms.GetComponent<Collider> ().enabled = true;
+			} 
+		}
+	 
+
         textureData.ApplyToMaterial(terrainMaterial);
         textureData.UpdateMeshHeights(terrainMaterial, terrainData.minHeight, terrainData.maxHeight);
     }
+
     void OnValuesUpdated()
     {
         if (!Application.isPlaying)

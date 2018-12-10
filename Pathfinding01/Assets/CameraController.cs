@@ -13,11 +13,13 @@ public class CameraController : MonoBehaviour {
 
 		offset = transform.position - player.transform.position;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		transform.position = player.transform.position + offset;
 	}
 }
 
+// STEP ONE: Change target to be in front of ship
+// STEP TWO: Try to change 
 
