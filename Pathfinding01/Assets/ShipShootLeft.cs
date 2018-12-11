@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ShipShootLeft : MonoBehaviour {
 
-	public float minDelay = 1000f;
-	public float maxDelay = 5000f;
+	public float minDelay = 1f;
+	public float maxDelay = 5f;
 	public float m_MaxLaunchForce = 30f; 
 	public List<Transform> canonsLeft; 
 	public Rigidbody m_cannonball; 
@@ -24,7 +24,7 @@ public class ShipShootLeft : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () 
-	{  
+	{ 
 		Trigger (); 
 	} 
 		
@@ -86,10 +86,10 @@ public class ShipShootLeft : MonoBehaviour {
 	{ 
 		rechargeLeftSideTime -= Time.deltaTime; 
 		//Debug.Log ("Time until recharging is over : " + rechargeLeftSideTime); 
-	}
+	} 
 
 	private void Delay()
-	{
+	{ 
 		delayFloat -= Time.deltaTime; 		
 		Debug.Log ("DelayFloat: " + delayFloat);
 	} 
