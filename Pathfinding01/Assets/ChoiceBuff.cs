@@ -4,36 +4,80 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+
+
 public class ChoiceBuff : MonoBehaviour {
 
 	Button leftChoiceButton;
-	Button rightChoiceButton;
-	Text leftBuff;
-	Text rightBuff;
+    Button rightChoiceButton;
+    Text shipStatsText1;
+    Text shipStatsText2;
+    Text chosenLeftText;
+    Text chosenRightText;
+    string shipStatsString1;
+    string shipStatsString2;
 	public static string buffChoice;
 	// Use this for initialization
 	void Start () 
 	{
 		//Gets references
-		leftChoiceButton = GameObject.Find ("left buff button").GetComponent<Button> (); 
-		rightChoiceButton = GameObject.Find ("right buff button").GetComponent<Button> (); 
-		leftBuff = GameObject.Find ("left_cube_text").GetComponent<Text> (); 
-		rightBuff = GameObject.Find ("right_cube_text").GetComponent<Text> (); 
 
-		//Adds listener
-		leftChoiceButton.onClick.AddListener(() => ButtonClicked(1));
-        Debug.Log("Test");
+        chosenLeftText = GameObject.Find("chosen_left_text").GetComponent<Text>();
+        chosenRightText = GameObject.Find("chosen_right_text").GetComponent<Text>();
+        leftChoiceButton = GameObject.Find("left buff button").GetComponent<Button>();
+        rightChoiceButton = GameObject.Find("right buff button").GetComponent<Button>();
+        shipStatsText1 = GameObject.Find("ship_stats_text1").GetComponent<Text>();
+        shipStatsText2 = GameObject.Find("ship_stats_text2").GetComponent<Text>();
+
+
+        //Adds listener
+        leftChoiceButton.onClick.AddListener(() => ButtonClicked(1));
         rightChoiceButton.onClick.AddListener(() => ButtonClicked(2));
+        //foreach (float item in UserData.shipMultipliers) {
+
+        
+        shipStatsString1 = "Ships stats: \n";
+        shipStatsString1 = shipStatsString1 + "Mass:                 \n";
+        shipStatsString1 = shipStatsString1 + "Cannon Delay:         \n";
+        shipStatsString1 = shipStatsString1 + "Cannon Recharge Time: \n";
+        shipStatsString1 = shipStatsString1 + "Armor:                \n";
+        shipStatsString1 = shipStatsString1 + "Health Pool:          \n";
+        shipStatsString1 = shipStatsString1 + "Cannonball Fly Time:  \n";
+        shipStatsString1 = shipStatsString1 + "Cannonball Damage:    \n";
+        shipStatsString1 = shipStatsString1 + "Cannonball Piercing:  \n";
+        shipStatsString1 = shipStatsString1 + "Cannon Range:         \n";
+        shipStatsString1 = shipStatsString1 + "Cannon Spread:        \n";
+        //}
+        shipStatsText1.text = shipStatsString1;
+
+
+
+
+
+
+
+
 
     }
-	
-	// Update is called once per frame
-	void Update () 
-	{		
-		
-	}
-   
 
+    // Update is called once per frame
+    void Update()
+    { 
+
+        shipStatsString2 = "\n";
+        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[0] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[1] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[2] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[3] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[4] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[5] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[6] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[7] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[8] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[9] * 100) + "% \n";
+
+        shipStatsText2.text = shipStatsString2;
+    }
 	/// <summary>
 	/// CALLED WHEN BUTTON IS CLICKED
 	/// </summary>
@@ -44,6 +88,11 @@ public class ChoiceBuff : MonoBehaviour {
         if (buttonNumb == 1) {
             UserData.shipBuffList.Add(Buffs.tempLeftBuff);
             UserData.shipDebuffList.Add(Buffs.tempLeftDebuff);
+            UserData.applyBuffOrDebuff(Buffs.tempLeftBuff.getIndex(), Buffs.tempLeftBuff.getMultiplier());
+            UserData.applyBuffOrDebuff(Buffs.tempLeftDebuff.getIndex(), Buffs.tempLeftDebuff.getMultiplier());
+            chosenLeftText.text = "Buffs Chosen";
+;
+
             Debug.Log(Buffs.tempLeftBuff.getDescription());
             Debug.Log(Buffs.tempLeftDebuff.getDescription());
             
@@ -53,6 +102,10 @@ public class ChoiceBuff : MonoBehaviour {
 		{
             UserData.shipBuffList.Add(Buffs.tempRightBuff);
             UserData.shipDebuffList.Add(Buffs.tempRightDebuff);
+            UserData.applyBuffOrDebuff(Buffs.tempRightBuff.getIndex(), Buffs.tempRightBuff.getMultiplier());
+            UserData.applyBuffOrDebuff(Buffs.tempRightDebuff.getIndex(), Buffs.tempRightDebuff.getMultiplier());
+            chosenRightText.text = "Buffs Chosen";
+
             Debug.Log(Buffs.tempRightBuff.getDescription());
             Debug.Log(Buffs.tempRightDebuff.getDescription());
         }
