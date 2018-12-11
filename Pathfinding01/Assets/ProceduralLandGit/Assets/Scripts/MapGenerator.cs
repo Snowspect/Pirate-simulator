@@ -40,7 +40,7 @@ public class MapGenerator : MonoBehaviour
     private void Awake()
     {
 		string mapName = "Map";
-		int levelChoice = 9; //must be between 1-10 //this should be dependent on userData variable
+		int levelChoice = 1; //must be between 1-10 //this should be dependent on userData variable
 
 		noiseData = noiseLevels [levelChoice-1]; //To meet the condition of the zero-indexed list
 
@@ -55,8 +55,6 @@ public class MapGenerator : MonoBehaviour
 				ms.GetComponent<Collider> ().enabled = true;
 			} 
 		}
-	 
-
         textureData.ApplyToMaterial(terrainMaterial);
         textureData.UpdateMeshHeights(terrainMaterial, terrainData.minHeight, terrainData.maxHeight);
     }

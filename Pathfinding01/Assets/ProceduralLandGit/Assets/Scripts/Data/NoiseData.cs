@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu()]
-public class NoiseData : UpdateAbleData {
-    public Noise.NormalizeMode normalizeMode;
-    public float noiseScale;
-    public int octaves;
-    [Range(0, 1)]
-    public float persistance;
-    public float lacunarity;
-    public int seed;
-    public Vector2 offset;
+public class NoiseData : UpdateAbleData { 
+    public Noise.NormalizeMode normalizeMode; 
+    public float noiseScale; 
+    public int octaves; 
+    [Range(0, 1)] 
+    public float persistance; 
+    public float lacunarity; 
+    public int seed; 
+    public Vector2 offset; 
 
 #if UNITY_EDITOR
 
