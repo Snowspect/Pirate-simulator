@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI; 
 
 
-public class PlayerController : MonoBehaviour { 
+public class PlayerController : MonoBehaviour {
 
-	public static float speed; 
-	public static float mass; 
+    public GameObject playerShip;
+    public static float speed; 
 	public float accelerationfactor; 
 	public float maximumSpeed; 
 	public float minimumSpeed; 
@@ -17,13 +17,35 @@ public class PlayerController : MonoBehaviour {
 	public float speedbuff; 
 	public float minimumRotationSpeed; 
 	float moveHorizontal; 
-	float moveVertical; 
+	float moveVertical;
+
+    public static float mass;
+    public static float cannonDelay;
+    public static float cannonRechargeTime;
+    public static float armor;
+    public static float healthPool;
+    public static float cannonballFlyTime;
+    public static float cannonballDamage;
+    public static float cannonballPiercing;
+    public static float cannonRange;
+    public static float cannonSpread;
+    //0 = Mass                 
+    //1 = Smaller Cannon Delay     
+    //2 = Cannon Recharge Time
+    //3 = Armor
+    //4 = Health Pool       
+    //5 = Cannonball Fly Time
+    //6 = Cannonball Damage    
+    //7 = Cannonball Piercing
+    //8 = Cannon Range
+    //9 = Cannon Spread
 
 
-	// Use this for initialization
-	void Start () 
-	{ 
-		setShipStandard (); 
+    // Use this for initialization
+    void Start () 
+	{
+        playerShip = GameObject.Find("Player_Ship").GetComponent<GameObject>();
+        setShipStandard(); 
 	} 
 	
 	// Update is called once per frame
@@ -53,10 +75,6 @@ public class PlayerController : MonoBehaviour {
 			else if (!Input.GetKey (KeyCode.UpArrow)) {
 			if (speed > minimumSpeed) {
 				speed = speed * 0.99f;
-				//the below commented out code is an attempt at making mass and the slowfactor play a role, but it isn't properly converted to 0.99f. so not ready yet.
-				//the massremovalfactor defines the number we have to remove from the decrease factor as these two play a crucial rule together
-				//float massremovalfactor = mass/100;
-				//slowfactor = mass - massremovalfactor;
 			} 
 		}
 		//so the ship doesn't go into a n^e factor indefinietly.
@@ -68,10 +86,6 @@ public class PlayerController : MonoBehaviour {
 		//moves the ship in relation to the world, taking the ships internal coordinate system into consideration (found through experimentation)
 		transform.Translate (transform.forward * speed * Time.deltaTime, Space.World);
 
-/*		lookDirection += new Vector3(0f,0f,0f);
-		Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-		transform.rotation = Quaternion.LerpUnclamped(transform.rotation, targetRotation, speed*Time.deltaTime);
-*/
 	}
 
 	//allows the ship to curve in left or right direction
@@ -106,53 +120,68 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (this.tag.Equals("light"))
 		{
-			mass = 180f;
-			accelerationfactor = 1000f / mass; 
+
+            playerShip.transform.localScale = new Vector3 (0.2f, 0.2f, 0.2f);
+			mass = 80f;
+            cannonDelay = 0.1f;
+            cannonRechargeTime = 2;
+            armor = 20;
+            healthPool = 50;
+            cannonballFlyTime = 30; //shoot acceleration
+            cannonballDamage = 10;
+            cannonballPiercing = 
+            cannonRange = 20; // cannon angle
+            cannonSpread = 10; // multipler for shoot cannons script
+
+
+
+            accelerationfactor = 1000f / mass; 
 			maximumSpeed = (1000f / mass); // 6,6
 			minimumSpeed = 0f;
-			//			minimumSpeedTrigger = 0.01f;
-			//			minimumRotationSpeed = 0.01f;
-			//slowfactor = 
-			//			speedbuff = 0f;
 			turnfactor = 7000f / mass;
-			//RectTransform t = this.GetComponent<RectTransform> (); //not sure why this is here
+
 
 		}
+
 		if (this.tag.Equals("medium"))
 		{
-			mass = 250f;
-			accelerationfactor = 1000f / mass; 
+            playerShip.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+
+            mass = 120f;
+            cannonDelay = 3f;
+            cannonRechargeTime = 2;
+            armor = 20;
+            healthPool = 50;
+            cannonballFlyTime = 30; //shoot acceleration
+            cannonballDamage = 20;
+            cannonRange = 30; // cannon angle
+            cannonSpread = 5; // multipler for shoot cannons script
+
+            accelerationfactor = 1000f / mass; 
 			maximumSpeed = (1000f / mass); // 6,6
 			minimumSpeed = 0f;
-			//			minimumSpeedTrigger = 0.01f;
-			//			minimumRotationSpeed = 0.01f;
-			//slowfactor = 
-			//			speedbuff = 0f;
 			turnfactor = 7000f / mass;
-			//ShipShooting.canons.Capacity = 4;
 		}
+
 		if (this.tag.Equals("heavy"))
 		{
-			mass = 300f;
-			accelerationfactor = 1000f / mass; 
+            playerShip.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+
+            mass = 160f;
+            cannonDelay = 0.1f;
+            cannonRechargeTime = 2;
+            armor = 20;
+            healthPool = 50;
+            cannonballFlyTime = 30; //shoot acceleration
+            cannonballDamage = 5;
+            cannonRange = 50; // cannon angle
+            cannonSpread = 15; // multipler for shoot cannons script
+
+            accelerationfactor = 1000f / mass; 
 			maximumSpeed = (1000f / mass); // 6,6
 			minimumSpeed = 0f;
-			//			minimumSpeedTrigger = 0.01f;
-			//			minimumRotationSpeed = 0.01f;
-			//slowfactor = 
-			//			speedbuff = 0f;
 			turnfactor = 7000f / mass;
 		}
 	}
 }
 
-
-
-//Not used, but could be helpful for other things.
-
-/*		#region til	ts the ship akwardly, could possibly be used	
- 		lookDirection += new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-		Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-		transform.rotation = Quaternion.lerpUnclamped(transform.rotation, targetRotation, speed*Time.deltaTime);
-		#endregion
-*/  

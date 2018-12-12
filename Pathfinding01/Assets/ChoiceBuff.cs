@@ -49,15 +49,6 @@ public class ChoiceBuff : MonoBehaviour {
         shipStatsString1 = shipStatsString1 + "Cannon Spread:        \n";
         //}
         shipStatsText1.text = shipStatsString1;
-
-
-
-
-
-
-
-
-
     }
 
     // Update is called once per frame
@@ -75,7 +66,7 @@ public class ChoiceBuff : MonoBehaviour {
         shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[7] * 100) + "% \n";
         shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[8] * 100) + "% \n";
         shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[9] * 100) + "% \n";
-
+        Debug.Log("test");
         shipStatsText2.text = shipStatsString2;
     }
 	/// <summary>

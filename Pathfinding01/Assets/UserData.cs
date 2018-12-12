@@ -27,8 +27,9 @@ public class UserData : MonoBehaviour
     void Start()
     {
         // Initialization of all indices in shipMultipliers
-        for (int i = 0; i <= 9; i++)
+        for (int i = 0; i <= 10; i++)
         {
+            Debug.Log("test");
             shipMultipliers.Add(1.0f);
         }
     }
@@ -37,7 +38,7 @@ public class UserData : MonoBehaviour
 
     static public void applyBuffOrDebuff(int index, float multiplier)
     {
-        shipMultipliers[index] = shipMultipliers[index] + (1 * multiplier);
+        shipMultipliers[index] = shipMultipliers[index] + multiplier;
     }
 
     static public float getShipMultiplier(int index)
