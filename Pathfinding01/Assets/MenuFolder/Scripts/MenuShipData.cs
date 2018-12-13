@@ -8,7 +8,7 @@ public class MenuShipData : MonoBehaviour {
     private void Update()
     {
         string ship = ShipData.shipType;
-        if(ship.Equals("Light"))
+        if(ship.Equals("Light") || ship.Equals(""))
         {
             lightShip.SetActive(true);
             mediumShip.SetActive(false);
