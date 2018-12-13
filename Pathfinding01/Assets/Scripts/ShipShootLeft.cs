@@ -37,22 +37,25 @@ public class ShipShootLeft : MonoBehaviour {
 		//If recharge is below 0
 		if (initialRechargeTime <= 0) //recharging is done, so we can trigger the fire again 
 		{ 
+			Debug.Log ("Setting it to allow fire");
 			allowedToFire = true; 
 		} 
 		// if allowed to fire and you press the fire button
 		if (allowedToFire == true && Input.GetButton (m_FireButton1)) { //activating delay for shooting cannonballs 
+			Debug.Log("activating delay");
 			delayRunning = true;
 			initialFireDelay = Random.Range (minDelay, maxDelay); 
 		} 
 		// if  we have fired and are recharing and the delay before shooting is not running
 		else if (allowedToFire == false && delayRunning == false) //starting the recharging process
 		{ 
+			Debug.Log ("allowedfire == false and delayRunning == false");
 			subtractRechargeTime(); 
 		} 
 		// if we tried to fire and we have to wait a tiny bit before firing 
 		else if (delayRunning == true) //starting the delay process (wait time before firing cannonball) 
 		{ 
-			//Debug.Log ("inside delay process"); 
+			Debug.Log ("inside delay process"); 
 			if (initialFireDelay <= 0)  //done so we don't trigger the else if this belongs to again.
 			{ 
 				delayRunning = false; 
@@ -64,8 +67,8 @@ public class ShipShootLeft : MonoBehaviour {
 		} 
 		else if (initialFireDelay <= 0) //the delay is done, fire the cannonballs and allow for recharging process. 
 		{ 
-			//Debug.Log ("inside firing process"); 
-			//initialFireDelay = 0.1f;  
+			Debug.Log ("inside firing process"); 
+			initialFireDelay = 0.1f;  
 			fireLeft (); 
 			initialRechargeTime = 3; 
 			allowedToFire = false; 
@@ -81,6 +84,7 @@ public class ShipShootLeft : MonoBehaviour {
 		{ 
 			Rigidbody canonBallInstance = Instantiate (m_cannonball, canon.position, canon.rotation) as Rigidbody; 
 			canonBallInstance.velocity = m_MaxLaunchForce * canon.forward; 
+			canonBallInstance.name = "cannonball";
 		} 
 	} 
 

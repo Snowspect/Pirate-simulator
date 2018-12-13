@@ -66,7 +66,7 @@ public class ShipShootRight : MonoBehaviour {
 		else if (initialFireDelay <= 0) //the delay is done, fire the cannonballs and allow for recharging process. 
 		{ 
 			//Debug.Log ("inside firing process"); 
-			//initialFireDelay = 0.1f; 
+			initialFireDelay = 0.1f; //must be set in order not to access this loop indefinietly 
 			fireRight (); 
 			initialRechargeTime = 3; 
 			allowedToFire = false; 
@@ -82,7 +82,8 @@ public class ShipShootRight : MonoBehaviour {
 		{ 
 			Rigidbody canonBallInstance = Instantiate (m_cannonball, canon.position, canon.rotation) as Rigidbody; 
 			canonBallInstance.velocity = m_MaxLaunchForce * canon.forward; 
-		}
+			canonBallInstance.name = "cannonball";
+		} 
 	}
 		
 	/// <summary>

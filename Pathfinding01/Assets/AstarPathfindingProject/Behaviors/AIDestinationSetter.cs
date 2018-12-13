@@ -19,8 +19,8 @@ namespace Pathfinding {
 		IAstarAI ai;
 
 		void OnEnable () {
-            GameObject ship = GameObject.Find("PlayerShip");
-            target = ship.transform;
+            GameObject seekerTarget = GameObject.Find("SeekerTarget");
+            target = seekerTarget.transform;
 			ai = GetComponent<IAstarAI>();
 			// Update the destination right before searching for a path as well.
 			// This is enough in theory, but this script will also update the destination every

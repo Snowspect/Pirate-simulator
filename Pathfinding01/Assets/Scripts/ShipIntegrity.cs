@@ -68,12 +68,12 @@ public class ShipIntegrity : MonoBehaviour {
 	/// </summary> 
 	void OnTriggerEnter(Collider other) 
 	{ 
-		if (other.tag.Equals("cannonball")) 
+		if (other.tag.Equals("cannonball")) 	
 		{
-            GameObject cannonball =                 other.gameObject.GetComponent<GameObject>();
-            CanonBallTrigger cannonballScript =     cannonball.GetComponent<CanonBallTrigger>();
-            cannonballDmg =                         cannonballScript.cannonballDamage;
-            cannonballArmorDmg =                    cannonballScript.cannonballArmorDamage;
+            GameObject cannonball = other.gameObject;
+            CanonBallTrigger cannonballScript = cannonball.GetComponent<CanonBallTrigger>();
+            cannonballDmg = cannonballScript.cannonballDamage;
+            cannonballArmorDmg = cannonballScript.cannonballArmorDamage;
 
             applyHealthDmgAfterArmor();
             applyArmorDamage();
@@ -83,8 +83,12 @@ public class ShipIntegrity : MonoBehaviour {
 
     private void applyHealthDmgAfterArmor()
     {
- 
-        health = cannonballDmg - armor;
+		if (armor <= 0) {
+			health -= cannonballDmg;
+		} else 
+		{
+			health -= cannonballDmg - armor;
+		}
     }
     private void applyArmorDamage()
     {

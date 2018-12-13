@@ -53,16 +53,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f4969039ffc024bb864e0713335976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noiseLevels: []
   drawMode: 2
   chunkSizeIndex: 8
   meshSimplification: 0
   terrainData: {fileID: 11400000, guid: 7590fc6599c33184f804691fd1f8e185, type: 2}
-  noiseData: {fileID: 11400000, guid: b388ae970f575c649982a266b4c591fa, type: 2}
   textureData: {fileID: 11400000, guid: 9bc6888b0e0646e4e90f6fa464a568ff, type: 2}
   terrainMaterial: {fileID: 2100000, guid: 081f80cb0e1ffd74c816d974fec1b6b6, type: 2}
   autoUpdate: 1
   region: 1
   aiMove: 0
+  spawnPlayer: {fileID: 0}
+  spawnAI: {fileID: 0}
   heightColors:
     blendMode: 0
     keys:
