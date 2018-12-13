@@ -9,7 +9,7 @@ public class ShipShootLeft : MonoBehaviour {
 	public float m_MaxLaunchForce = 30f; 
 	public List<Transform> canonsLeft; 
 	public Rigidbody m_cannonball; 
-	private float rechargeLeftSideTime; 
+	public float rechargeLeftSideTime; 
 	public string m_FireButton1; 
 	public bool m_FiredLeft; 
 	bool delayFire = false;

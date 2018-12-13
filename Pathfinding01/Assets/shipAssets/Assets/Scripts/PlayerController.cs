@@ -19,16 +19,16 @@ public class PlayerController : MonoBehaviour {
 	float moveHorizontal; 
 	float moveVertical;
 
-    public static float mass;
-    public static float cannonDelay;
-    public static float cannonRechargeTime;
-    public static float armor;
-    public static float healthPool;
-    public static float cannonballFlyTime;
-    public static float cannonballDamage;
-    public static float cannonballPiercing;
-    public static float cannonRange;
-    public static float cannonSpread;
+    public float mass;
+    public float cannonDelay;
+    public float cannonRechargeTime;
+    public float armor;
+    public float healthPool;
+    public float cannonballFlyTime;
+    public float cannonballDamage;
+    public float cannonballPiercing;
+    public float cannonRange;
+    public float cannonSpread;
     //0 = Mass                 
     //1 = Smaller Cannon Delay     
     //2 = Cannon Recharge Time

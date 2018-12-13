@@ -4,30 +4,31 @@ using UnityEngine;
 
 public class ShipIntegrity : MonoBehaviour {
 
-	public float integrity;
+	public float armor;
 	public float health;
-	public float cannonballDmg;
+	private float cannonballDmg;
+    private float cannonballArmorDmg;
 	public float shipCollisionDamage;
 	public Rigidbody rdbod;
 
 	// Use this for initialization 
 	void Start () 
-	{ 
-		integrity = 10f; 
-		health = 50f; 
-		cannonballDmg = 10f; 
+	{
+        armor = PlayerController.armor;
+        health = PlayerController.healthPool; 
+		cannonballDmg = 10f; //Skal ændres til ontrigger.getgameobject.getcannonballdmg eller noget i den stil 
 	} 
 	
 	// Update is called once per frame
 	void Update () 
 	{ 
-		shipFail (); 
+		checkIntegrity(); 
 	} 
 
 	/// <summary>
 	/// IF SHIP HAS NO HEALTH BACK
 	/// </summary>
-	void shipFail() 
+	void checkIntegrity() 
 	{ 
 		if (health < 0) 
 		{ 
@@ -66,16 +67,26 @@ public class ShipIntegrity : MonoBehaviour {
 	void OnTriggerEnter(Collider other) 
 	{ 
 		if (other.tag.Equals("cannonball")) 
-		{ 
-			health = health - (cannonballDmg - integrity); //recieves more cannonball for each hit.
-			integrity = integrity - (integrity / cannonballDmg); //removes less armor over each hit.
-			//integrity = integrity - 0.5f; 
+		{
+            GameObject cannonball =                 other.gameObject.GetComponent<GameObject>();
+            CanonBallTrigger cannonballScript =     cannonball.GetComponent<CanonBallTrigger>();
+            cannonballDmg =                         cannonballScript.cannonballDamage;
+            cannonballArmorDmg =                    cannonballScript.cannonballArmorDamage;
+
+            applyHealthDmgAfterArmor();
+            applyArmorDamage();
 		} 
-		if (other.tag.Equals ("light") || other.tag.Equals ("medium") || other.tag.Equals ("heavy")) 
-		{ 
-			//health = health - (0.8f / integrity); 
-			integrity = integrity - (integrity / cannonballDmg);
-			//integrity = integrity - shipCollisionDamage; 
-		} 
-	} 
+		 
+	}
+
+    private void applyHealthDmgAfterArmor()
+    {
+ 
+        health = cannonballDmg - armor;
+    }
+    private void applyArmorDamage()
+    {
+        armor = armor - cannonballArmorDmg;
+
+    }
 } 

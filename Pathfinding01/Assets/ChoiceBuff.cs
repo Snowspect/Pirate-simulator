@@ -33,7 +33,7 @@ public class ChoiceBuff : MonoBehaviour {
         //Adds listener
         leftChoiceButton.onClick.AddListener(() => ButtonClicked(1));
         rightChoiceButton.onClick.AddListener(() => ButtonClicked(2));
-        //foreach (float item in UserData.shipMultipliers) {
+        //foreach (float item in ShipData.shipMultipliers) {
 
         
         shipStatsString1 = "Ships stats: \n";
@@ -56,16 +56,16 @@ public class ChoiceBuff : MonoBehaviour {
     { 
 
         shipStatsString2 = "\n";
-        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[0] * 100) + "% \n";
-        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[1] * 100) + "% \n";
-        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[2] * 100) + "% \n";
-        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[3] * 100) + "% \n";
-        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[4] * 100) + "% \n";
-        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[5] * 100) + "% \n";
-        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[6] * 100) + "% \n";
-        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[7] * 100) + "% \n";
-        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[8] * 100) + "% \n";
-        shipStatsString2 = shipStatsString2 + (int)(UserData.shipMultipliers[9] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(ShipData.shipMultipliers[0] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(ShipData.shipMultipliers[1] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(ShipData.shipMultipliers[2] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(ShipData.shipMultipliers[3] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(ShipData.shipMultipliers[4] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(ShipData.shipMultipliers[5] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(ShipData.shipMultipliers[6] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(ShipData.shipMultipliers[7] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(ShipData.shipMultipliers[8] * 100) + "% \n";
+        shipStatsString2 = shipStatsString2 + (int)(ShipData.shipMultipliers[9] * 100) + "% \n";
         Debug.Log("test");
         shipStatsText2.text = shipStatsString2;
     }
@@ -77,10 +77,10 @@ public class ChoiceBuff : MonoBehaviour {
         //this gets triggered twice for some reason, tried to disable leftChoiceButton listener to see if it would only print once when clicked but still prints twice.
         //left side
         if (buttonNumb == 1) {
-            UserData.shipBuffList.Add(Buffs.tempLeftBuff);
-            UserData.shipDebuffList.Add(Buffs.tempLeftDebuff);
-            UserData.applyBuffOrDebuff(Buffs.tempLeftBuff.getIndex(), Buffs.tempLeftBuff.getMultiplier());
-            UserData.applyBuffOrDebuff(Buffs.tempLeftDebuff.getIndex(), Buffs.tempLeftDebuff.getMultiplier());
+            ShipData.shipBuffList.Add(      Buffs.tempLeftBuff);
+            ShipData.shipDebuffList.Add(    Buffs.tempLeftDebuff);
+            ShipData.applyBuffOrDebuff(     Buffs.tempLeftBuff.getIndex(),   Buffs.tempLeftBuff.getMultiplier());
+            ShipData.applyBuffOrDebuff(     Buffs.tempLeftDebuff.getIndex(), Buffs.tempLeftDebuff.getMultiplier());
             chosenLeftText.text = "Buffs Chosen";
 ;
 
@@ -91,10 +91,10 @@ public class ChoiceBuff : MonoBehaviour {
         //right side
         if (buttonNumb == 2)
 		{
-            UserData.shipBuffList.Add(Buffs.tempRightBuff);
-            UserData.shipDebuffList.Add(Buffs.tempRightDebuff);
-            UserData.applyBuffOrDebuff(Buffs.tempRightBuff.getIndex(), Buffs.tempRightBuff.getMultiplier());
-            UserData.applyBuffOrDebuff(Buffs.tempRightDebuff.getIndex(), Buffs.tempRightDebuff.getMultiplier());
+            ShipData.shipBuffList.Add(      Buffs.tempRightBuff);
+            ShipData.shipDebuffList.Add(    Buffs.tempRightDebuff);
+            ShipData.applyBuffOrDebuff(     Buffs.tempRightBuff.getIndex(),   Buffs.tempRightBuff.getMultiplier());
+            ShipData.applyBuffOrDebuff(     Buffs.tempRightDebuff.getIndex(), Buffs.tempRightDebuff.getMultiplier());
             chosenRightText.text = "Buffs Chosen";
 
             Debug.Log(Buffs.tempRightBuff.getDescription());

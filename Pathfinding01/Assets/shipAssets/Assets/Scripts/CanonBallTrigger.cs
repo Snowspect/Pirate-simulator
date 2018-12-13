@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class CanonBallTrigger : MonoBehaviour {
 
+    public float cannonballDamage;
+    public float cannonballArmorDamage;
 	// Use this for initialization
 	void Start () {
+
 	}
 	
 	// Update is called once per frame
@@ -15,6 +18,7 @@ public class CanonBallTrigger : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
 	{
+
 		Destroy (gameObject);
 	}
 }
