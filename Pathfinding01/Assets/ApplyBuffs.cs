@@ -46,14 +46,14 @@ class ApplyBuffs
         shipShootLeftScript.minDelay = shipShootLeftScript.minDelay * ShipData.getShipMultiplier(1);
         shipShootLeftScript.maxDelay = shipShootLeftScript.maxDelay * ShipData.getShipMultiplier(1);
         shipShootLeftScript.rechargeLeftSideTime = shipShootLeftScript.rechargeLeftSideTime * ShipData.getShipMultiplier(2);
-        shipShootLeftScript.cannonAngleLeftSide = shipShootLeftScript.cannonAngleLeftSide * ShipData.getShipMultiplier(8);
+        //shipShootLeftScript.cannonAngleLeftSide = shipShootLeftScript.cannonAngleLeftSide * ShipData.getShipMultiplier(8);
 
         ShipShootRight shipShootRightScript = ship.GetComponent<ShipShootRight>();
         shipShootRightScript.m_MaxLaunchForce = shipShootRightScript.m_MaxLaunchForce * ShipData.getShipMultiplier(5);
-        shipShootRightScript.minDelay = shipShootRightScript.minDelay * ShipData.getShipMultiplier(1);
-        shipShootRightScript.maxDelay = shipShootRightScript.maxDelay * ShipData.getShipMultiplier(1);
-        shipShootRightScript.rechargeRightSideTime = shipShootRightScript.rechargeRightSideTime * ShipData.getShipMultiplier(2);
-        shipShootRightScript.cannonAngleRightSide = shipShootRightScript.cannonAngleRightSide * ShipData.getShipMultiplier(8);
+        //shipShootRightScript.minDelay = shipShootRightScript.minDelay * ShipData.getShipMultiplier(1);
+        //shipShootRightScript.maxDelay = shipShootRightScript.maxDelay * ShipData.getShipMultiplier(1);
+        //shipShootRightScript.rechargeRightSideTime = shipShootRightScript.rechargeRightSideTime * ShipData.getShipMultiplier(2);
+        //shipShootRightScript.cannonAngleRightSide = shipShootRightScript.cannonAngleRightSide * ShipData.getShipMultiplier(8);
 
 
 

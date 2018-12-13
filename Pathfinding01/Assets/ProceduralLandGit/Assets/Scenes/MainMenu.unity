@@ -1296,6 +1296,7 @@ MonoBehaviour:
   - {fileID: 516099162}
   m_cannonball: {fileID: 54775029776551700, guid: 5590ffdec2b5215469b814c96f50d070,
     type: 2}
+  rechargeLeftSideTime: 0
   m_FireButton1: Ctrl
   m_FiredLeft: 0
 --- !u!114 &145723799
@@ -1331,9 +1332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bc90d121aefb84d8818ad1f266a231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  integrity: 0
+  armor: 0
   health: 0
-  cannonballDmg: 0
   shipCollisionDamage: 0.5
   rdbod: {fileID: 0}
 --- !u!65 &145723801
@@ -1420,6 +1420,16 @@ MonoBehaviour:
   turnfactor: 10
   speedbuff: 0
   minimumRotationSpeed: 0.5
+  mass: 0
+  cannonDelay: 0
+  cannonRechargeTime: 0
+  armor: 0
+  healthPool: 0
+  cannonballFlyTime: 0
+  cannonballDamage: 0
+  cannonballPiercing: 0
+  cannonRange: 0
+  cannonSpread: 0
 --- !u!224 &145723806
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6363,6 +6373,7 @@ MonoBehaviour:
   - {fileID: 2096572907}
   m_cannonball: {fileID: 54775029776551700, guid: 5590ffdec2b5215469b814c96f50d070,
     type: 2}
+  rechargeLeftSideTime: 0
   m_FireButton1: Ctrl
   m_FiredLeft: 0
 --- !u!114 &655312863
@@ -6398,9 +6409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bc90d121aefb84d8818ad1f266a231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  integrity: 0
+  armor: 0
   health: 0
-  cannonballDmg: 0
   shipCollisionDamage: 0.5
   rdbod: {fileID: 0}
 --- !u!65 &655312865
@@ -6487,6 +6497,16 @@ MonoBehaviour:
   turnfactor: 10
   speedbuff: 0
   minimumRotationSpeed: 0.5
+  mass: 0
+  cannonDelay: 0
+  cannonRechargeTime: 0
+  armor: 0
+  healthPool: 0
+  cannonballFlyTime: 0
+  cannonballDamage: 0
+  cannonballPiercing: 0
+  cannonRange: 0
+  cannonSpread: 0
 --- !u!224 &655312870
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10424,6 +10444,7 @@ MonoBehaviour:
   - {fileID: 1601527329}
   m_cannonball: {fileID: 54775029776551700, guid: 5590ffdec2b5215469b814c96f50d070,
     type: 2}
+  rechargeLeftSideTime: 0
   m_FireButton1: Ctrl
   m_FiredLeft: 0
 --- !u!114 &1254507844
@@ -10459,9 +10480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bc90d121aefb84d8818ad1f266a231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  integrity: 0
+  armor: 0
   health: 0
-  cannonballDmg: 0
   shipCollisionDamage: 0.5
   rdbod: {fileID: 0}
 --- !u!65 &1254507846
@@ -10548,6 +10568,16 @@ MonoBehaviour:
   turnfactor: 10
   speedbuff: 0
   minimumRotationSpeed: 0.5
+  mass: 0
+  cannonDelay: 0
+  cannonRechargeTime: 0
+  armor: 0
+  healthPool: 0
+  cannonballFlyTime: 0
+  cannonballDamage: 0
+  cannonballPiercing: 0
+  cannonRange: 0
+  cannonSpread: 0
 --- !u!224 &1254507851
 RectTransform:
   m_ObjectHideFlags: 0

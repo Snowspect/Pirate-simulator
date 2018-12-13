@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Start () 
 	{
-        playerShip = GameObject.Find("Player_Ship").GetComponent<GameObject>();
+        playerShip = GameObject.Find("PlayerShip");
         setShipStandard(); 
 	} 
 	
@@ -120,7 +120,6 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (this.tag.Equals("light"))
 		{
-
             playerShip.transform.localScale = new Vector3 (0.2f, 0.2f, 0.2f);
 			mass = 80f;
             cannonDelay = 0.1f;

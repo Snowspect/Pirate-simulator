@@ -5,15 +5,15 @@ using System;
 using System.Threading;
 public class MapGenerator : MonoBehaviour
 {
-	public List<NoiseData> noiseLevels; 
+    public List<NoiseData> noiseLevels;
 
-    public enum DrawMode { NoiseMap, ColorMap, Mesh,Falloff };
+    public enum DrawMode { NoiseMap, ColorMap, Mesh, Falloff };
     public DrawMode drawMode;
 
     [Range(0, MeshGenerator.numSupportedChunkSizes - 1)]
     public int chunkSizeIndex;
 
-    [Range(0, MeshGenerator.numberOfSupportedLODs-1)]
+    [Range(0, MeshGenerator.numberOfSupportedLODs - 1)]
     public int meshSimplification;
 
     public TerrainData terrainData;
@@ -24,6 +24,9 @@ public class MapGenerator : MonoBehaviour
     public bool autoUpdate;
     public bool region;
     public bool aiMove;
+
+    public GameObject spawnPlayer;
+    public GameObject spawnAI;
 
     //public TerrainType[] regions;
     public CustomGradient heightColors;
@@ -39,22 +42,71 @@ public class MapGenerator : MonoBehaviour
 
     private void Awake()
     {
-		string mapName = "Map";
-		int levelChoice = 1; //must be between 1-10 //this should be dependent on userData variable
 
-		noiseData = noiseLevels [levelChoice-1]; //To meet the condition of the zero-indexed list
+        string mapName = "Map";
+        int levelChoice = 9; //must be between 1-10 //this should be dependent on userData variable
 
-		MeshFilter ms;
-		foreach (var level in noiseLevels)
-		{ 
-			if (level.name.Equals ("Level0" + levelChoice)) {
-				mapName = mapName + 0 + levelChoice;
-				Debug.Log ("mapname in first if statement : " + mapName);
-				ms = GameObject.Find (mapName).GetComponent<MeshFilter> (); 
-				ms.GetComponent<Renderer> ().enabled = true; 
-				ms.GetComponent<Collider> ().enabled = true;
-			} 
-		}
+        noiseData = noiseLevels[levelChoice - 1]; //To meet the condition of the zero-indexed list
+
+        MeshFilter ms;
+        foreach (var level in noiseLevels)
+        {
+            if (level.name.Equals("Level0" + levelChoice))
+            {
+                mapName = mapName + 0 + levelChoice;
+                Debug.Log("mapname in first if statement : " + mapName);
+                ms = GameObject.Find(mapName).GetComponent<MeshFilter>();
+                ms.GetComponent<Renderer>().enabled = true;
+                ms.GetComponent<Collider>().enabled = true;
+            }
+        }
+
+        if (noiseData.name.Equals("Level01"))
+        {
+            spawnPlayer.transform.position = new Vector3(-268, 0, -219); //DONE
+            spawnAI.transform.position = new Vector3(224, 0, -219); //DONE
+        }
+        else if (noiseData.name.Equals("Level02"))
+        {
+            spawnPlayer.transform.position = new Vector3(236, 0, -266); //DONE
+            spawnAI.transform.position = new Vector3(-227, 0, 44); //DONE
+        }
+        else if (noiseData.name.Equals("Level03"))
+        {
+            spawnPlayer.transform.position = new Vector3(-168, 0, 148); //DONE
+            spawnAI.transform.position = new Vector3(253, 0, 198); //DONE
+        }
+        else if (noiseData.name.Equals("Level04"))
+        {
+            spawnPlayer.transform.position = new Vector3(29, 0, 36); //DONE
+            spawnAI.transform.position = new Vector3(-173, 0, 160); //DONE
+        }
+        else if (noiseData.name.Equals("Level05"))
+        {
+            spawnPlayer.transform.position = new Vector3(-114, 0, 90); //DONE
+            spawnAI.transform.position = new Vector3(45, 0, -223); //DONE
+        }
+        else if (noiseData.name.Equals("Level06"))
+        {
+            spawnPlayer.transform.position = new Vector3(195, 0, -165); //DONE
+            spawnAI.transform.position = new Vector3(-60, 0, 40); //DONE
+        }
+        else if (noiseData.name.Equals("Level07"))
+        {
+            spawnPlayer.transform.position = new Vector3(-267, 0, -165); //DONE
+            spawnAI.transform.position = new Vector3(96, 0, 120); //DONE
+        }
+        else if (noiseData.name.Equals("Level08"))
+        {
+            spawnPlayer.transform.position = new Vector3(17, 0, -165); //DONE
+            spawnAI.transform.position = new Vector3(-293, 0, -289); //DONE
+        }
+        else if (noiseData.name.Equals("Level09"))
+        {
+            spawnPlayer.transform.position = new Vector3(77, 0, -141); //DONE 
+            spawnAI.transform.position = new Vector3(288, 0, 59); //DONE
+        }
+
         textureData.ApplyToMaterial(terrainMaterial);
         textureData.UpdateMeshHeights(terrainMaterial, terrainData.minHeight, terrainData.maxHeight);
     }
@@ -113,7 +165,7 @@ public class MapGenerator : MonoBehaviour
         {
             mapDataThreadInfoQueue.Enqueue(new MapThreadInfo<MapData>(callBack, mapData));
         }
-        
+
     }
     public void RequestMeshData(MapData mapData, int lod, Action<MeshData> callback)
     {
@@ -123,7 +175,7 @@ public class MapGenerator : MonoBehaviour
         new Thread(threadStart).Start();
     }
 
-    void MeshDataThread(MapData mapData, int lod,  Action<MeshData> callBack)
+    void MeshDataThread(MapData mapData, int lod, Action<MeshData> callBack)
     {
         MeshData meshData = MeshGenerator.GenerateTerrainMesh(mapData.heightMap, terrainData.meshHeightMultiplier, terrainData.meshHeightCurve, lod);
         lock (meshDataThreadInfoQueue)
@@ -134,17 +186,17 @@ public class MapGenerator : MonoBehaviour
 
     void Update()
     {
-        if(mapDataThreadInfoQueue.Count > 0)
+        if (mapDataThreadInfoQueue.Count > 0)
         {
-            for(int i = 0; i < mapDataThreadInfoQueue.Count; i++)
+            for (int i = 0; i < mapDataThreadInfoQueue.Count; i++)
             {
                 MapThreadInfo<MapData> threadInfo = mapDataThreadInfoQueue.Dequeue();
                 threadInfo.callBack(threadInfo.parameter);
             }
         }
-        if(meshDataThreadInfoQueue.Count > 0)
+        if (meshDataThreadInfoQueue.Count > 0)
         {
-            for(int i = 0; i < meshDataThreadInfoQueue.Count; i++)
+            for (int i = 0; i < meshDataThreadInfoQueue.Count; i++)
             {
                 MapThreadInfo<MeshData> threadInfo = meshDataThreadInfoQueue.Dequeue();
                 threadInfo.callBack(threadInfo.parameter);
@@ -153,20 +205,20 @@ public class MapGenerator : MonoBehaviour
     }
     MapData GenerateMapData(Vector2 centre)
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize+2, mapChunkSize+2, noiseData.seed, noiseData.noiseScale, noiseData.octaves, noiseData.persistance, noiseData.lacunarity, centre+ noiseData.offset, noiseData.normalizeMode);
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize + 2, mapChunkSize + 2, noiseData.seed, noiseData.noiseScale, noiseData.octaves, noiseData.persistance, noiseData.lacunarity, centre + noiseData.offset, noiseData.normalizeMode);
 
 
         //Color[] colorMap = new Color[mapChunkSize * mapChunkSize];
         if (terrainData.useFalloff)
         {
-            if(falloffMap == null)
+            if (falloffMap == null)
             {
-                falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize+2);
+                falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize + 2);
             }
 
-            for (int y = 0; y < mapChunkSize+2; y++)
+            for (int y = 0; y < mapChunkSize + 2; y++)
             {
-                for (int x = 0; x < mapChunkSize+2; x++)
+                for (int x = 0; x < mapChunkSize + 2; x++)
                 {
                     if (terrainData.useFalloff)
                     {
@@ -188,7 +240,7 @@ public class MapGenerator : MonoBehaviour
                                 break;
                             }
                         }
-
+ 
                     }
                     else if (!region)
                     {
@@ -200,7 +252,7 @@ public class MapGenerator : MonoBehaviour
                                 int right = i + 1;
                                 if (right == heightColors.NumKeys)
                                     right = i;
-
+ 
                                 float blendTime = Mathf.InverseLerp(heightColors.GetKey(left).Time, heightColors.GetKey(right).Time, currentHeight);
                                 Color thisColor =  Color.Lerp(heightColors.GetKey(left).Color, heightColors.GetKey(right).Color, blendTime);
                                 colorMap[y * mapChunkSize + x] = thisColor;
@@ -208,7 +260,7 @@ public class MapGenerator : MonoBehaviour
                             }
                         }
                     }
-                
+               
                     else
                     {
                         for (int i = 0; i < regions.Length; i++)
@@ -232,18 +284,18 @@ public class MapGenerator : MonoBehaviour
 
     void OnValidate()
     {
-        if(terrainData != null)
+        if (terrainData != null)
         {
             terrainData.OnValuesUpdated -= OnValuesUpdated;
             terrainData.OnValuesUpdated += OnValuesUpdated;
         }
-        if(noiseData != null)
+        if (noiseData != null)
         {
             noiseData.OnValuesUpdated -= OnValuesUpdated;
             noiseData.OnValuesUpdated += OnValuesUpdated;
         }
 
-        if(textureData != null)
+        if (textureData != null)
         {
             textureData.OnValuesUpdated -= OnTexturevaluesUpdated;
             textureData.OnValuesUpdated += OnTexturevaluesUpdated;
@@ -271,7 +323,7 @@ public struct TerrainType
     public float height;
     public Color color;
 }
-
+ 
     */
 public struct MapData
 {

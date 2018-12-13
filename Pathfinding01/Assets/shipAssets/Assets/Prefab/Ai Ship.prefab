@@ -4512,10 +4512,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bc90d121aefb84d8818ad1f266a231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  integrity: 0
+  armor: 0
   health: 0
-  cannonballDmg: 0
-  shipCollisionDamage: 0
+  shipCollisionDamage: 0.4
   rdbod: {fileID: 0}
 --- !u!114 &114491575854688224
 MonoBehaviour:
@@ -4637,7 +4636,7 @@ MonoBehaviour:
   pickNextWaypointDist: 2
   endReachedDistance: 0.2
   alwaysDrawGizmos: 1
-  slowWhenNotFacingTarget: 1
+  slowWhenNotFacingTarget: 0
   whenCloseToDestination: 0
   constrainInsideGraph: 0
 --- !u!224 &224314931392932620
@@ -4647,7 +4646,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1197436156231668}
   m_LocalRotation: {x: 0.000000021853662, y: 0.013773753, z: -3.0102973e-10, w: 0.99990517}
-  m_LocalPosition: {x: 0, y: 0, z: -61.285736}
+  m_LocalPosition: {x: 0, y: 0, z: 193}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4018645222710468}
@@ -4714,6 +4713,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 1.5780001, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.5223258, y: 0}
+  m_AnchoredPosition: {x: -291, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
