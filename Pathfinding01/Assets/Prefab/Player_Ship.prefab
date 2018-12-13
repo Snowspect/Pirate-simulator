@@ -4742,20 +4742,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1190753045171336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 224b83154c4b80b42a0f989b20c5436d, type: 3}
+  m_Script: {fileID: 11500000, guid: 864275c55462bb64f8999dca5e2e36ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDelay: 0.1
-  maxDelay: 0.5
+  minDelay: 1
+  maxDelay: 5
   m_MaxLaunchForce: 30
-  canonsLeft:
-  - {fileID: 4591509207632684}
-  - {fileID: 4524533411020544}
-  - {fileID: 4942552474661742}
+  canonsRight:
+  - {fileID: 4322811925618502}
+  - {fileID: 4600322684950282}
+  - {fileID: 4063254723268660}
   m_cannonball: {fileID: 54775029776551700, guid: 5590ffdec2b5215469b814c96f50d070,
     type: 2}
-  m_FireButton1: Alt
-  allowedToFire: 0
+  m_FireButton2: Ctrl
+  initialRechargeTime: 3
+  initialFireDelay: 0
 --- !u!114 &114753765208341568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4764,20 +4765,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1190753045171336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ec1892b0fe69344081d739ad1c2c89e, type: 3}
+  m_Script: {fileID: 11500000, guid: fda15bae4da7f7745947dc39cd77e532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDelay: 0.1
-  maxDelay: 0.5
+  minDelay: 1
+  maxDelay: 5
   m_MaxLaunchForce: 30
-  canonsRight:
-  - {fileID: 4063254723268660}
-  - {fileID: 4600322684950282}
-  - {fileID: 4322811925618502}
+  canonsLeft:
+  - {fileID: 4942552474661742}
+  - {fileID: 4524533411020544}
+  - {fileID: 4591509207632684}
   m_cannonball: {fileID: 54775029776551700, guid: 5590ffdec2b5215469b814c96f50d070,
     type: 2}
-  m_FireButton2: Ctrl
-  allowedToFire: 0
+  initialRechargeTime: 3
+  initialFireDelay: 0
+  m_FireButton1: Alt
 --- !u!114 &114787296564447894
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -112,6 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2252855229eebda43a2d06aba109e28c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cannonballDamage: 10
+  cannonballArmorDamage: 5
 --- !u!135 &135614398071415232
 SphereCollider:
   m_ObjectHideFlags: 1

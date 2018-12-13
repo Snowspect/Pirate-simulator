@@ -41,20 +41,19 @@ public class PlayerController : MonoBehaviour {
     //9 = Cannon Spread
 
 
-    // Use this for initialization
+    // Use this for initialization 
     void Start () 
-	{
-        playerShip = GameObject.Find("PlayerShip");
+	{ 
+        playerShip = GameObject.Find("PlayerShip"); 
         setShipStandard(); 
 	} 
 	
-	// Update is called once per frame
+	// Update is called once per frame 
 	void Update () 
 	{ 
 		setShipStandard (); 
 		moveCharacter (); //implementation of movement
 		RotateCharacter (); //implementation of rotation
-
 	} 
 
 	/// <summary>
