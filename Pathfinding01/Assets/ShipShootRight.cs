@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class ShipShootRight : MonoBehaviour {
 
+
+	public float minDelay = 1f; 
+	public float maxDelay = 5f; 
 	public float m_MaxLaunchForce = 30f; 
 	public List<Transform> canonsRight; 
 	public Rigidbody m_cannonball; 
-	private float rechargeRightSideTime; 
+ 
 	public string m_FireButton2; 
-	public bool m_FiredRight; 
+
+	public float initialRechargeTime = 0f; 
+	public float initialFireDelay = 0f; 
+
+	bool delayRunning = false; 
+	bool allowedToFire = false; 
 
 	// Use this for initialization
 	void Start () {
-		rechargeRightSideTime = 0f; 
 	}
 
 	// Update is called once per frame
@@ -28,19 +35,41 @@ public class ShipShootRight : MonoBehaviour {
 	/// </summary>
 	private void Trigger() 
 	{ 
-		if (rechargeRightSideTime <= 0) 
-		{
-			m_FiredRight = false;
-		}
-		if (m_FiredRight == false && Input.GetButton (m_FireButton2)) //Alt
-		{ // that is, if recharge is done and the above if statement is executed
-			fireRight();
-			rechargeRightSideTime = 3; 
-			m_FiredRight = true; 
-		} 
-		else if (m_FiredRight == true) 
+		//If recharge is below 0
+		if (initialRechargeTime <= 0) //recharging is done, so we can trigger the fire again 
 		{ 
-			rechargeRightSide ();	
+			allowedToFire = true; 
+		} 
+		// if allowed to fire and you press the fire button
+		if (allowedToFire == true && Input.GetButton (m_FireButton2)) { //activating delay for shooting cannonballs 
+			delayRunning = true;
+			initialFireDelay = Random.Range (minDelay, maxDelay); 
+		} 
+		// if  we have fired and are recharing and the delay before shooting is not running
+		else if (allowedToFire == false && delayRunning == false) //starting the recharging process
+		{ 
+			subtractRechargeTime(); 
+		} 
+		// if we tried to fire and we have to wait a tiny bit before firing 
+		else if (delayRunning == true) //starting the delay process (wait time before firing cannonball) 
+		{ 
+			//Debug.Log ("inside delay process"); 
+			if (initialFireDelay <= 0)  //done so we don't trigger the else if this belongs to again.
+			{ 
+				delayRunning = false; 
+			} 
+			else 
+			{ 
+				subtractFireDelay(); 
+			} 
+		} 
+		else if (initialFireDelay <= 0) //the delay is done, fire the cannonballs and allow for recharging process. 
+		{ 
+			//Debug.Log ("inside firing process"); 
+			//initialFireDelay = 0.1f; 
+			fireRight (); 
+			initialRechargeTime = 3; 
+			allowedToFire = false; 
 		} 
 	} 
 
@@ -57,11 +86,17 @@ public class ShipShootRight : MonoBehaviour {
 	}
 		
 	/// <summary>
-	/// RECHARGING RIGHT SIDE OF SHIP
+	/// RECHARGING LEFT SIDE OF SHIP
 	/// </summary>
-	private void rechargeRightSide()
+	private void subtractRechargeTime() 
 	{ 
-		rechargeRightSideTime -= Time.deltaTime; 
-		Debug.Log ("Time until right side recharging is over : " + rechargeRightSideTime); 
-	}
+		initialRechargeTime -= Time.deltaTime; 
+		//Debug.Log("Time until right side recharging is over : " + initialRechargeTime);
+	} 
+
+	private void subtractFireDelay() 
+	{ 
+		initialFireDelay -= Time.deltaTime; 
+		//Debug.Log("Time until right side recharging is over : " + initialRechargeTime);
+	} 
 }

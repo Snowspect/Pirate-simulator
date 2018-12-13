@@ -27,6 +27,7 @@ public class SpawnsAndGoalstate : MonoBehaviour {
         aiShipAlive.Add(false);
         aiShipAlive.Add(false);
         aiShipAlive[0] = true; //activates first player
+		spawnedFirst = true;
     }
 
     void start()
@@ -86,7 +87,7 @@ public class SpawnsAndGoalstate : MonoBehaviour {
     /// </summary>
     void Goalstate()
     {
-        if (spawnedFirst == true)
+        if (spawnedFourth == true)
         {
             int counter = 0;
             foreach (bool AIshipStatus in aiShipAlive)
@@ -108,6 +109,7 @@ public class SpawnsAndGoalstate : MonoBehaviour {
     /// </summary>
     void CheckIfAIAlive()
     {
+		//Debug.Log ("Hooooo");
         if (GameObject.Find("AI0") == null)
         {
             aiShipAlive[0] = false;
