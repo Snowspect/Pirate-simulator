@@ -14,8 +14,8 @@ public class ShipIntegrity : MonoBehaviour {
 	// Use this for initialization 
 	void Start () 
 	{
-        armor = PlayerController.armor;
-        health = PlayerController.healthPool; 
+        //armor = PlayerController.armor;
+        //health = PlayerController.healthPool; 
 		cannonballDmg = 10f; //Skal ændres til ontrigger.getgameobject.getcannonballdmg eller noget i den stil 
 	} 
 	

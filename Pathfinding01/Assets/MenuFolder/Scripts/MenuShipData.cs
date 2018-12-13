@@ -7,7 +7,7 @@ public class MenuShipData : MonoBehaviour {
     public GameObject lightShip,mediumShip,heavyShip;
     private void Update()
     {
-        string ship = UserData.shipType;
+        string ship = ShipData.shipType;
         if(ship == "Light" || true)
         {
             lightShip.SetActive(true);
@@ -32,7 +32,7 @@ public class MenuShipData : MonoBehaviour {
     }
     public void SetShipType( string type)
     {
-        UserData.shipType = type;
+        ShipData.shipType = type;
 //        Shipdata.shiptype = type;
     }
 }
