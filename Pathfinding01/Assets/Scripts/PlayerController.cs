@@ -51,7 +51,6 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame 
 	void Update () 
 	{ 
-		setShipStandard (); 
 		moveCharacter (); //implementation of movement
 		RotateCharacter (); //implementation of rotation
 	} 
@@ -119,6 +118,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (this.tag.Equals("light"))
 		{
+
             playerShip.transform.localScale = new Vector3 (0.2f, 0.2f, 0.2f);
 			mass = 80f;
             cannonDelay = 0.1f;
@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour {
             healthPool = 50;
             cannonballFlyTime = 30; //shoot acceleration
             cannonballDamage = 10;
-            cannonballPiercing = 
+			cannonballPiercing = 10;
             cannonRange = 20; // cannon angle
             cannonSpread = 10; // multipler for shoot cannons script
 
@@ -143,13 +143,14 @@ public class PlayerController : MonoBehaviour {
 
 		if (this.tag.Equals("medium"))
 		{
+
             playerShip.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
 
             mass = 120f;
             cannonDelay = 3f;
             cannonRechargeTime = 2;
-            armor = 20;
-            healthPool = 50;
+            armor = 20f;
+            healthPool = 50f;
             cannonballFlyTime = 30; //shoot acceleration
             cannonballDamage = 20;
             cannonRange = 30; // cannon angle
@@ -163,6 +164,8 @@ public class PlayerController : MonoBehaviour {
 
 		if (this.tag.Equals("heavy"))
 		{
+
+
             playerShip.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
 
             mass = 160f;
@@ -182,4 +185,3 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 }
-

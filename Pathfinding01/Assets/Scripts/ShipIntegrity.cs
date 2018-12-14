@@ -14,9 +14,12 @@ public class ShipIntegrity : MonoBehaviour {
 	// Use this for initialization 
 	void Start () 
 	{
+		PlayerController playerRef = GameObject.Find ("PlayerShip").GetComponent<PlayerController> ();
+		armor = playerRef.armor;
+		health = playerRef.healthPool;
+
         //armor = PlayerController.armor;
         //health = PlayerController.healthPool; 
-
 
 		cannonballDmg = 10f; //Skal ændres til ontrigger.getgameobject.getcannonballdmg eller noget i den stil 
 	} 
@@ -78,21 +81,20 @@ public class ShipIntegrity : MonoBehaviour {
             applyHealthDmgAfterArmor();
             applyArmorDamage();
 		} 
-		 
 	}
 
     private void applyHealthDmgAfterArmor()
-    {
+    { 
 		if (armor <= 0) {
 			health -= cannonballDmg;
 		} else 
-		{
+		{ 
 			health -= cannonballDmg - armor;
-		}
-    }
+		} 
+    } 
     private void applyArmorDamage()
-    {
+    { 
         armor = armor - cannonballArmorDmg;
 
-    }
+    } 
 } 

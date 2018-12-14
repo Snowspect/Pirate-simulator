@@ -4745,8 +4745,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864275c55462bb64f8999dca5e2e36ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDelay: 1
-  maxDelay: 5
+  minDelay: 0.5
+  maxDelay: 1
   m_MaxLaunchForce: 30
   canonsRight:
   - {fileID: 4322811925618502}
@@ -4754,7 +4754,7 @@ MonoBehaviour:
   - {fileID: 4063254723268660}
   m_cannonball: {fileID: 54775029776551700, guid: 5590ffdec2b5215469b814c96f50d070,
     type: 2}
-  m_FireButton2: Ctrl
+  m_FireButton2: Alt
   initialRechargeTime: 3
   initialFireDelay: 0
 --- !u!114 &114753765208341568
@@ -4768,8 +4768,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda15bae4da7f7745947dc39cd77e532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDelay: 1
-  maxDelay: 5
+  minDelay: 0.5
+  maxDelay: 1
   m_MaxLaunchForce: 30
   canonsLeft:
   - {fileID: 4942552474661742}
@@ -4779,7 +4779,7 @@ MonoBehaviour:
     type: 2}
   initialRechargeTime: 3
   initialFireDelay: 0
-  m_FireButton1: Alt
+  m_FireButton1: Ctrl
 --- !u!114 &114787296564447894
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -27,19 +27,17 @@ class ApplyBuffs
 
     public void apply(GameObject ship)
     {
-
         ShipIntegrity shipIntegrityScript = ship.GetComponent<ShipIntegrity>();
 
         shipIntegrityScript.health = shipIntegrityScript.health * ShipData.getShipMultiplier(4);
         shipIntegrityScript.armor = shipIntegrityScript.armor * ShipData.getShipMultiplier(3);
 
         CanonBallTrigger cannonBallTriggerScript = ship.GetComponent<CanonBallTrigger>();
-        cannonBallTriggerScript.cannonballDamage = cannonBallTriggerScript.cannonballDamage * ShipData.getShipMultiplier(6);
-        cannonBallTriggerScript.cannonballArmorDamage = cannonBallTriggerScript.cannonballArmorDamage * ShipData.getShipMultiplier(7);
+        //cannonBallTriggerScript.cannonballDamage = cannonBallTriggerScript.cannonballDamage * ShipData.getShipMultiplier(6);
+        //cannonBallTriggerScript.cannonballArmorDamage = cannonBallTriggerScript.cannonballArmorDamage * ShipData.getShipMultiplier(7);
 
         PlayerController playerControllerScript = ship.GetComponent<PlayerController>();
         playerControllerScript.mass = playerControllerScript.mass * ShipData.getShipMultiplier(0);
-
 
         ShipShootLeft shipShootLeftScript = ship.GetComponent<ShipShootLeft>();
         shipShootLeftScript.m_MaxLaunchForce = shipShootLeftScript.m_MaxLaunchForce * ShipData.getShipMultiplier(5);

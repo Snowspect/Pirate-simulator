@@ -16,6 +16,9 @@ public class ShipShootRight : MonoBehaviour {
 	public float initialRechargeTime = 0f; 
 	public float initialFireDelay = 0f; 
 
+	private float localRecharge;
+	private float localDelay;
+
 	bool delayRunning = false; 
 	bool allowedToFire = false; 
 
@@ -36,14 +39,14 @@ public class ShipShootRight : MonoBehaviour {
 	private void Trigger() 
 	{ 
 		//If recharge is below 0
-		if (initialRechargeTime <= 0) //recharging is done, so we can trigger the fire again 
+		if (localRecharge <= 0) //recharging is done, so we can trigger the fire again 
 		{ 
 			allowedToFire = true; 
 		} 
 		// if allowed to fire and you press the fire button
 		if (allowedToFire == true && Input.GetButton (m_FireButton2)) { //activating delay for shooting cannonballs 
 			delayRunning = true;
-			initialFireDelay = Random.Range (minDelay, maxDelay); 
+			initialFireDelay = Random.Range (minDelay, maxDelay);
 		} 
 		// if  we have fired and are recharing and the delay before shooting is not running
 		else if (allowedToFire == false && delayRunning == false) //starting the recharging process
@@ -68,7 +71,7 @@ public class ShipShootRight : MonoBehaviour {
 			//Debug.Log ("inside firing process"); 
 			initialFireDelay = 0.1f; //must be set in order not to access this loop indefinietly 
 			fireRight (); 
-			initialRechargeTime = 3; 
+			localRecharge = initialRechargeTime; 
 			allowedToFire = false; 
 		} 
 	} 
@@ -91,7 +94,7 @@ public class ShipShootRight : MonoBehaviour {
 	/// </summary>
 	private void subtractRechargeTime() 
 	{ 
-		initialRechargeTime -= Time.deltaTime; 
+		localRecharge -= Time.deltaTime; 
 		//Debug.Log("Time until right side recharging is over : " + initialRechargeTime);
 	} 
 

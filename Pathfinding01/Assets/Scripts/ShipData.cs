@@ -25,14 +25,14 @@ public class ShipData : MonoBehaviour
     //8 = Cannon Range
     //9 = Cannon Spread
 
-    void Start()
+    void Awake()
     {
-        // Initialization of all indices in shipMultipliers
-        for (int i = 0; i <= 10; i++)
-        {
-            Debug.Log("test");
-            shipMultipliers.Add(1.0f);
-        }
+		// Initialization of all indices in shipMultipliers
+		for (int i = 0; i <= 10; i++)
+		{
+			Debug.Log("test");
+			shipMultipliers.Add(1.0f);
+		}
     }
         
     
