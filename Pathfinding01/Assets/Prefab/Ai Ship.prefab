@@ -4658,7 +4658,9 @@ MonoBehaviour:
   maxDelay: 5
   m_MaxLaunchForce: 30
   canonsRight:
+  - {fileID: 4338201882383132}
   - {fileID: 4361421922362806}
+  - {fileID: 4492337636472422}
   m_cannonball: {fileID: 54775029776551700, guid: 5590ffdec2b5215469b814c96f50d070,
     type: 2}
   initialRechargeTime: 0
@@ -4693,7 +4695,9 @@ MonoBehaviour:
   maxDelay: 5
   m_MaxLaunchForce: 30
   canonsLeft:
+  - {fileID: 4984278041531300}
   - {fileID: 4801334300078922}
+  - {fileID: 4139157919409314}
   m_cannonball: {fileID: 54775029776551700, guid: 5590ffdec2b5215469b814c96f50d070,
     type: 2}
   initialRechargeTime: 0

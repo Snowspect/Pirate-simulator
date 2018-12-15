@@ -45,15 +45,17 @@ public class AiShootRight : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider other)
-	{
+	{ 
 		if (other.name.Equals ("AiShootTriggerRight")) 
-		{
+		{ 
 			allowTrigger = false;
 			allowedToFire2 = true;
-			localRecharge = 0f;
+			localRecharge = 01f;
 			delayRunning = false;
-		}
-	}
+			allowedToFire = false;
+
+		} 
+	} 
 
 	/// <summary>
 	/// TRIGGER FUNCTIONALITY FOR SHIP SHOOTING FROM RIGHT SIDE

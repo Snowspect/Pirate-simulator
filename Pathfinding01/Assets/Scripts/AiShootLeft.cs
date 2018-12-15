@@ -45,13 +45,21 @@ public class AiShootLeft : MonoBehaviour {
 		}
 	} 
 
-	void OnTriggerExit(Collider other)
+	void OnTriggerExit(Collider other) 
 	{ 
 		if (other.name.Equals ("AiShootTriggerLeft")) 
-		{
-				allowTrigger = false;
-		}
+		{ 
+			allowTrigger = false; 
+		
+			allowedToFire2 = true;
+			allowedToFire = false;
+			localRecharge = 0f;
+			delayRunning = false;
+
+		} 
 	} 
+
+
 
 	/// <summary>
 	/// TRIGGER FUNCTIONALITY FOR SHIP SHOOTING FROM RIGHT SIDE
