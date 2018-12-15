@@ -6,7 +6,7 @@ public class ShipShootRight : MonoBehaviour {
 
 
 	public float minDelay = 1f; 
-	public float maxDelay = 5f; 
+	public float maxDelay = 3f; 
 	public float m_MaxLaunchForce = 30f; 
 	public List<Transform> canonsRight; 
 	public Rigidbody m_cannonball; 
@@ -23,14 +23,16 @@ public class ShipShootRight : MonoBehaviour {
 	bool allowedToFire = false; 
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
+		
 	}
 
 	// Update is called once per frame
 	void Update () 
-	{
-		Trigger ();
-	}
+	{ 
+		Trigger (); 
+	} 
 
 
 	/// <summary>

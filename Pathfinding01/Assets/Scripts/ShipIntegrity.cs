@@ -95,6 +95,5 @@ public class ShipIntegrity : MonoBehaviour {
     private void applyArmorDamage()
     { 
         armor = armor - cannonballArmorDmg;
-
     } 
 } 
