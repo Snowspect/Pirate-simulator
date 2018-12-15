@@ -13,19 +13,23 @@ public class MenuShipData : MonoBehaviour {
             lightShip.SetActive(true);
             mediumShip.SetActive(false);
             heavyShip.SetActive(false);
+			SetShipType ("Light");
         }
         else if(ship.Equals("Medium"))
         {
             lightShip.SetActive(false);
             mediumShip.SetActive(true);
             heavyShip.SetActive(false);
+			SetShipType ("Medium");
         }
         else if(ship.Equals("Heavy"))
         {
             lightShip.SetActive(false);
             mediumShip.SetActive(false);
             heavyShip.SetActive(true);
+			SetShipType ("Heavy");
         }
+
         lightShip.transform.Rotate(Vector3.up * Time.deltaTime * 20);
         mediumShip.transform.Rotate(Vector3.up * Time.deltaTime * 20);
         heavyShip.transform.Rotate(Vector3.up * Time.deltaTime * 20);
