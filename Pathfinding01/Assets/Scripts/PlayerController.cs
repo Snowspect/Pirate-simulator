@@ -53,12 +53,20 @@ public class PlayerController : MonoBehaviour {
 	{ 
 		moveCharacter (); //implementation of movement
 		RotateCharacter (); //implementation of rotation
-	} 
+	}
 
-	/// <summary>
-	/// Moves the character.
-	/// </summary>
-	void moveCharacter()
+    /// <summary>
+    /// Moves the character.
+    /// </summary>
+    /// 
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.name == "Map01")
+        {
+            //transform.Translate(transform.forward*0,Space.World);//Destroy(col.gameObject);
+        }
+    }
+    void moveCharacter()
 	{
 		//accelerate the ship as a factor of its acceleration factor/ mass.
 		//the acceleration factor can present for example the ships flags to make it easier to move forward.

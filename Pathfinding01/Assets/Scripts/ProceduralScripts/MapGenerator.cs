@@ -44,7 +44,7 @@ public class MapGenerator : MonoBehaviour
     {
 
         string mapName = "Map";
-        int levelChoice = 9; //must be between 1-10 //this should be dependent on userData variable
+        int levelChoice = 1; //must be between 1-10 //this should be dependent on userData variable
 
         noiseData = noiseLevels[levelChoice - 1]; //To meet the condition of the zero-indexed list
 
@@ -63,8 +63,8 @@ public class MapGenerator : MonoBehaviour
 
         if (noiseData.name.Equals("Level01"))
         {
-            spawnPlayer.transform.position = new Vector3(-268, 0, -219); //DONE
-            spawnAI.transform.position = new Vector3(224, 0, -219); //DONE
+            spawnPlayer.transform.position = new Vector3(-268, 4, -219); //DONE
+            spawnAI.transform.position = new Vector3(224, 4, -219); //DONE
         }
         else if (noiseData.name.Equals("Level02"))
         {
