@@ -52,7 +52,6 @@ public class SpawnsAndGoalstate : MonoBehaviour {
 
         aiShipAlive[0] = true; //activates first spot so now first player is "alive", accordingly to the list
 		spawnedFirst = true;
-
     }
 
     void start()
@@ -65,7 +64,7 @@ public class SpawnsAndGoalstate : MonoBehaviour {
     { 
 		checkIfPlayerAlive ();
         //      Debug.Log ("This is the time since startup : " + Time.realtimeSinceStartup);
-		if (Time.timeSinceLevelLoad > /*119f*/ 5f && Time.timeSinceLevelLoad < /*121f*/ 10f /* || GameObject.Find("AI0") == null */)
+		if (Time.timeSinceLevelLoad > 119f && Time.timeSinceLevelLoad < 121f || GameObject.Find("AI0") == null)
         { 
             if (spawnedSecond == false)
             {
@@ -77,7 +76,7 @@ public class SpawnsAndGoalstate : MonoBehaviour {
 
         }
         //4 minutes have passed and can't find either the first AISHIP or the second AISHIP
-		if (Time.timeSinceLevelLoad > /*239f */ 5f && Time.timeSinceLevelLoad < /*241f*/ 10f /* || GameObject.Find("AI0") == null && GameObject.Find("AI1") == null */)
+		if (Time.timeSinceLevelLoad > 239f && Time.timeSinceLevelLoad < 241f || GameObject.Find("AI0") == null && GameObject.Find("AI1") == null)
         {
             if (spawnedThird == false)
             {
@@ -87,7 +86,7 @@ public class SpawnsAndGoalstate : MonoBehaviour {
                 aiShipAlive[2] = true; //activates third player
             }
         }
-		if (Time.timeSinceLevelLoad > /*359f */ 5f && Time.timeSinceLevelLoad < /*361f*/ 10f /* || GameObject.Find("AI0") == null && GameObject.Find("AI1") == null && GameObject.Find("AI2") == null */)
+		if (Time.timeSinceLevelLoad > 359f && Time.timeSinceLevelLoad < 361f || GameObject.Find("AI0") == null && GameObject.Find("AI1") == null && GameObject.Find("AI2") == null)
         {
             if (spawnedFourth == false)
             {

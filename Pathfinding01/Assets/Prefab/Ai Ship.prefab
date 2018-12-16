@@ -4663,7 +4663,7 @@ MonoBehaviour:
   - {fileID: 4492337636472422}
   m_cannonball: {fileID: 54775029776551700, guid: 5590ffdec2b5215469b814c96f50d070,
     type: 2}
-  initialRechargeTime: 0
+  initialRechargeTime: 3
   initialFireDelay: 0
 --- !u!114 &114123780282251514
 MonoBehaviour:
@@ -4700,7 +4700,7 @@ MonoBehaviour:
   - {fileID: 4139157919409314}
   m_cannonball: {fileID: 54775029776551700, guid: 5590ffdec2b5215469b814c96f50d070,
     type: 2}
-  initialRechargeTime: 0
+  initialRechargeTime: 3
   initialFireDelay: 0
   localRecharge: 0
 --- !u!114 &114491575854688224
@@ -4709,7 +4709,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1197436156231668}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
   m_Name: 
@@ -4797,7 +4797,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1197436156231668}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
   m_Name: 
@@ -4808,7 +4808,7 @@ MonoBehaviour:
   repathRate: 0.5
   canSearch: 1
   canMove: 1
-  maxSpeed: 2
+  maxSpeed: 10
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -4823,7 +4823,7 @@ MonoBehaviour:
   pickNextWaypointDist: 2
   endReachedDistance: 0.2
   alwaysDrawGizmos: 1
-  slowWhenNotFacingTarget: 0
+  slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
 --- !u!224 &224314931392932620
