@@ -15,7 +15,7 @@ public class SpawnsAndGoalstate : MonoBehaviour {
     List<bool> aiShipAlive = new List<bool>();
 	private Button nextScene;
 	private Canvas ButtonCanvas;
-
+	Text SpawnText;
 
     // Use this for initialization
     void Awake()
@@ -28,26 +28,34 @@ public class SpawnsAndGoalstate : MonoBehaviour {
 		ButtonCanvas = GameObject.Find ("ButtonCanvas").GetComponent<Canvas> ();
 		ButtonCanvas.enabled = false;
 
-		//spawning initial Player and AI
-		Rigidbody PlayerShip;
-        PlayerShip = Instantiate(Player, spawnPointPlayer.transform.position, spawnPointPlayer.transform.rotation) as Rigidbody; //will work with different scenes
-        PlayerShip.name = "PlayerShip";
-	
-		//Applies buffs to the ship
-		ApplyBuffs tmpScript = new ApplyBuffs();
-		tmpScript.apply(PlayerShip.gameObject);
+
+		//spawning initial Player and AI 
+		Rigidbody PlayerShip; 
+        PlayerShip = Instantiate(Player, spawnPointPlayer.transform.position, spawnPointPlayer.transform.rotation) as Rigidbody; //will work with different scenes 
+        PlayerShip.name = "PlayerShip"; 
+		PlayerShip.tag = ShipData.shipType;
+
+		if(Player.tag.Equals("heavy"))
+		{
+			PlayerShip.transform.SetPositionAndRotation(new Vector3(PlayerShip.transform.position.x, 6,PlayerShip.transform.position.z), PlayerShip.transform.rotation);
+		}
+				
+
+		//Applies buffs to the ship 
+		ApplyBuffs tmpScript = new ApplyBuffs(); 
+		tmpScript.apply(PlayerShip.gameObject); 
 
 
 		//Spawns an ai ship
 		Rigidbody AIShip = Instantiate(AiShip, spawnPointAI.transform.position, spawnPointAI.transform.rotation) as Rigidbody;
         AIShip.name = "AI" + index;
         index++;
-        Debug.Log("AI");
+
 
 		//List used throughout to check if all AI have spawned and are dead or alive
-        aiShipAlive.Add(false);
-        aiShipAlive.Add(false);
-        aiShipAlive.Add(false);
+        aiShipAlive.Add(false); 
+        aiShipAlive.Add(false); 
+        aiShipAlive.Add(false); 
         aiShipAlive.Add(false);	
 
         aiShipAlive[0] = true; //activates first spot so now first player is "alive", accordingly to the list
@@ -73,8 +81,8 @@ public class SpawnsAndGoalstate : MonoBehaviour {
                 spawnedSecond = true;
                 aiShipAlive[1] = true; //activates second player
             }
-
         }
+
         //4 minutes have passed and can't find either the first AISHIP or the second AISHIP
 		if (Time.timeSinceLevelLoad > 239f && Time.timeSinceLevelLoad < 241f || GameObject.Find("AI0") == null && GameObject.Find("AI1") == null)
         {

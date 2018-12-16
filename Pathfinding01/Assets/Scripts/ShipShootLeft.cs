@@ -13,6 +13,7 @@ public class ShipShootLeft : MonoBehaviour {
 
 	public float initialRechargeTime = 0f; 
 	public float initialFireDelay = 0f; 
+	public float localRecharge;
 
 	public string m_FireButton1; 
 	bool delayRunning = false; 
@@ -34,22 +35,18 @@ public class ShipShootLeft : MonoBehaviour {
 	private void Trigger() 
 	{ 
 		//If recharge is below 0
-		if (initialRechargeTime <= 0) //recharging is done, so we can trigger the fire again 
+		if (localRecharge <= 0) //recharging is done, so we can trigger the fire again 
 		{ 
-			//Debug.Log ("Setting it to allow fire");
 			allowedToFire = true; 
-			initialRechargeTime = 0.1f;
 		} 
 		// if allowed to fire and you press the fire button
 		if (allowedToFire == true && Input.GetButton (m_FireButton1)) { //activating delay for shooting cannonballs 
-			//Debug.Log("activating delay");
 			delayRunning = true;
-			initialFireDelay = Random.Range (minDelay, maxDelay); 
+			initialFireDelay = Random.Range (minDelay, maxDelay);
 		} 
 		// if  we have fired and are recharing and the delay before shooting is not running
 		else if (allowedToFire == false && delayRunning == false) //starting the recharging process
 		{ 
-			//Debug.Log ("allowedfire == false and delayRunning == false");
 			subtractRechargeTime(); 
 		} 
 		// if we tried to fire and we have to wait a tiny bit before firing 
@@ -68,9 +65,9 @@ public class ShipShootLeft : MonoBehaviour {
 		else if (initialFireDelay <= 0) //the delay is done, fire the cannonballs and allow for recharging process. 
 		{ 
 			//Debug.Log ("inside firing process"); 
-			initialFireDelay = 0.1f; 
+			initialFireDelay = 0.1f; //must be set in order not to access this loop indefinietly 
 			fireLeft (); 
-			initialRechargeTime = 3; 
+			localRecharge = initialRechargeTime; 
 			allowedToFire = false; 
 		} 
 	} 
@@ -93,7 +90,7 @@ public class ShipShootLeft : MonoBehaviour {
 	/// </summary>
 	private void subtractRechargeTime() 
 	{ 
-		initialRechargeTime -= Time.deltaTime; 
+		localRecharge -= Time.deltaTime; 
 		//Debug.Log("Time until left side recharging is over : " + initialRechargeTime);
 	} 
 

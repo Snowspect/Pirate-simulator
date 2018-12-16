@@ -68,13 +68,13 @@ public class MapGenerator : MonoBehaviour
         }
         else if (noiseData.name.Equals("Level02"))
         {
-            spawnPlayer.transform.position = new Vector3(236, 0, -266); //DONE
-            spawnAI.transform.position = new Vector3(-227, 0, 44); //DONE
+            spawnPlayer.transform.position = new Vector3(236, 4, -266); //DONE
+            spawnAI.transform.position = new Vector3(-227, 4, 44); //DONE
         }
         else if (noiseData.name.Equals("Level03"))
         {
-            spawnPlayer.transform.position = new Vector3(-168, 0, 148); //DONE
-            spawnAI.transform.position = new Vector3(253, 0, 198); //DONE
+            spawnPlayer.transform.position = new Vector3(-168, 4, 148); //DONE
+            spawnAI.transform.position = new Vector3(253, 4, 198); //DONE
         }
         else if (noiseData.name.Equals("Level04"))
         {

@@ -16,8 +16,8 @@ public class ShipShootRight : MonoBehaviour {
 	public float initialRechargeTime = 0f; 
 	public float initialFireDelay = 0f; 
 
-	private float localRecharge;
-	private float localDelay;
+	public float localRecharge;
+	//private float localDelay;
 
 	bool delayRunning = false; 
 	bool allowedToFire = false; 
