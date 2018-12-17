@@ -35,8 +35,6 @@ public class SpawnsAndGoalstate : MonoBehaviour {
 			levelText.text = "Level 2/2";
 		}
 
-
-
 		taskText = GameObject.Find ("TaskText").GetComponent<Text> ();
 
 		winText = GameObject.Find ("WinText").GetComponent<Text>();

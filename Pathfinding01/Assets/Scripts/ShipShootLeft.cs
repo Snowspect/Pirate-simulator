@@ -18,6 +18,7 @@ public class ShipShootLeft : MonoBehaviour {
 	public string m_FireButton1; 
 	bool delayRunning = false; 
 	bool allowedToFire = false; 
+	bool allowDelay = true;
 
 	// Use this for initialization
 	void Start () {
@@ -40,9 +41,10 @@ public class ShipShootLeft : MonoBehaviour {
 			allowedToFire = true; 
 		} 
 		// if allowed to fire and you press the fire button
-		if (allowedToFire == true && Input.GetButton (m_FireButton1)) { //activating delay for shooting cannonballs 
+		if (allowedToFire == true && Input.GetButton (m_FireButton1) && allowDelay == true) { //activating delay for shooting cannonballs 
 			delayRunning = true;
 			initialFireDelay = Random.Range (minDelay, maxDelay);
+			allowDelay = false;
 		} 
 		// if  we have fired and are recharing and the delay before shooting is not running
 		else if (allowedToFire == false && delayRunning == false) //starting the recharging process
@@ -69,6 +71,7 @@ public class ShipShootLeft : MonoBehaviour {
 			fireLeft (); 
 			localRecharge = initialRechargeTime; 
 			allowedToFire = false; 
+			allowDelay = true;
 		} 
 	} 
 

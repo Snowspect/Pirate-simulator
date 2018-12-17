@@ -4874,8 +4874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864275c55462bb64f8999dca5e2e36ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDelay: 0.5
-  maxDelay: 1
+  minDelay: 0.1
+  maxDelay: 0.3
   m_MaxLaunchForce: 30
   canonsRight:
   - {fileID: 4322811925618502}
@@ -4898,8 +4898,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda15bae4da7f7745947dc39cd77e532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDelay: 0.5
-  maxDelay: 1
+  minDelay: 0.1
+  maxDelay: 0.3
   m_MaxLaunchForce: 30
   canonsLeft:
   - {fileID: 4942552474661742}
