@@ -8,6 +8,7 @@ public class AiShootRight : MonoBehaviour {
 	public float maxDelay = 5f; 
 	public float m_MaxLaunchForce = 30f; 
 	public List<Transform> canonsRight; 
+	public List<Transform> canonsLeft; 
 	public Rigidbody m_cannonball; 
 
 	public float initialRechargeTime = 3f; 
@@ -82,7 +83,7 @@ public class AiShootRight : MonoBehaviour {
 		else if (delayRunning == true) //starting the delay process (wait time before firing cannonball) 
 		{ 
 			//Debug.Log ("inside delay process"); 
-			if (initialFireDelay <= 0)  //done so we don't trigger the else if this belongs to again. 
+			if (initialFireDelay <= 0) //done so we don't trigger the else if this belongs to again. 
 			{ 
 				delayRunning = false; 
 			} 
@@ -95,7 +96,8 @@ public class AiShootRight : MonoBehaviour {
 		{ 
 			//Debug.Log ("inside firing process"); 
 			initialFireDelay = 0.1f; //must be set in order not to access this loop indefinietly 
-			fireRight (); 
+			fireRight ();
+			fireLeft ();
 			localRecharge = initialRechargeTime; 
 			allowedToFire = false; 
 			allowedToFire2 = true;
@@ -105,6 +107,15 @@ public class AiShootRight : MonoBehaviour {
 	private void fireRight() 
 	{ 
 		foreach (var canon in canonsRight) 
+		{ 
+			Rigidbody canonBallInstance = Instantiate (m_cannonball, canon.position, canon.rotation) as Rigidbody; 
+			canonBallInstance.velocity = m_MaxLaunchForce * canon.forward; 
+			canonBallInstance.name = "cannonball"; 
+		} 
+	}
+	private void fireLeft() 
+	{ 
+		foreach (var canon in canonsLeft) 
 		{ 
 			Rigidbody canonBallInstance = Instantiate (m_cannonball, canon.position, canon.rotation) as Rigidbody; 
 			canonBallInstance.velocity = m_MaxLaunchForce * canon.forward; 

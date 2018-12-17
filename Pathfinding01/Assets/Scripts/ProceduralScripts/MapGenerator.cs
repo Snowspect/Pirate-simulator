@@ -64,7 +64,7 @@ public class MapGenerator : MonoBehaviour
         if (noiseData.name.Equals("Level01"))
         {
             spawnPlayer.transform.position = new Vector3(-268, 4, -219); //DONE
-            spawnAI.transform.position = new Vector3(224, 4, -219); //DONE
+            spawnAI.transform.position = new Vector3(-283, 4, 81); //DONE
         }
         else if (noiseData.name.Equals("Level02"))
         {

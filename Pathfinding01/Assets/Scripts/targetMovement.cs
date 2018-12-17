@@ -20,7 +20,7 @@ public class targetMovement : MonoBehaviour {
 	{ 
 		float speedMult = PlayerController.speed;
 		float staticRange = 100f;
-		float positionValue = speedMult * 30 + staticRange;
+		float positionValue = speedMult * 18 + staticRange;
 
 		this.transform.localPosition = new Vector3 (transform.localPosition.x, transform.localPosition.y, positionValue);
 

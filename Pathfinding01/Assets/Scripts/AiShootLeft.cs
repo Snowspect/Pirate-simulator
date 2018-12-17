@@ -8,6 +8,7 @@ public class AiShootLeft : MonoBehaviour {
 	public float maxDelay = 5f; 
 	public float m_MaxLaunchForce = 30f; 
 	public List<Transform> canonsLeft; 
+	public List<Transform> canonsRight; 
 	public Rigidbody m_cannonball; 
 
 	public float initialRechargeTime = 3f; 
@@ -100,6 +101,7 @@ public class AiShootLeft : MonoBehaviour {
 			//Debug.Log ("inside firing process"); 
 			initialFireDelay = 0.1f; //must be set in order not to access this loop indefinietly 
 			fireLeft (); 
+			fireRight ();
 			localRecharge = initialRechargeTime; 
 			allowedToFire = false; 
 			allowedToFire2 = true;
@@ -108,7 +110,6 @@ public class AiShootLeft : MonoBehaviour {
 
 	private void fireLeft() 
 	{ 
-		Debug.Log ("Trying to fire left");
 		foreach (var canon in canonsLeft) 
 		{ 
 			Rigidbody canonBallInstance = Instantiate (m_cannonball, canon.position, canon.rotation) as Rigidbody; 
@@ -117,6 +118,15 @@ public class AiShootLeft : MonoBehaviour {
 		} 
 	} 
 
+	private void fireRight() 
+	{ 
+		foreach (var canon in canonsRight) 
+		{ 
+			Rigidbody canonBallInstance = Instantiate (m_cannonball, canon.position, canon.rotation) as Rigidbody; 
+			canonBallInstance.velocity = m_MaxLaunchForce * canon.forward; 
+			canonBallInstance.name = "cannonball"; 
+		} 
+	}
 	/// <summary> 
 	/// RECHARGING LEFT SIDE OF SHIP 
 	/// </summary> 

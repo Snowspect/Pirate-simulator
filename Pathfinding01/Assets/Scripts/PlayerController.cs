@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour {
     void Start () 
 	{ 
         playerShip = GameObject.Find("PlayerShip"); 
-        setShipStandard(); 
+        setShipStandard();
 	} 
 	
 	// Update is called once per frame 
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour {
 		{
 
             playerShip.transform.localScale = new Vector3 (0.2f, 0.2f, 0.2f);
-			mass = 80f;
+			mass = 112f;
             cannonDelay = 0.1f;
             cannonRechargeTime = 2;
             armor = 20;
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour {
 
             playerShip.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
 
-            mass = 120f;
+            mass = 168f;
             cannonDelay = 3f;
             cannonRechargeTime = 2;
             armor = 20f;
@@ -172,11 +172,9 @@ public class PlayerController : MonoBehaviour {
 
 		if (this.tag.Equals("heavy"))
 		{
-
-
             playerShip.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
 
-            mass = 160f;
+            mass = 224f;
             cannonDelay = 0.1f;
             cannonRechargeTime = 2;
             armor = 20;

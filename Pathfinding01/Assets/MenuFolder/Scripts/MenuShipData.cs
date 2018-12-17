@@ -8,21 +8,21 @@ public class MenuShipData : MonoBehaviour {
     private void Update()
     {
         string ship = ShipData.shipType;
-        if(ship.Equals("Light") || ship.Equals(""))
+        if(ship.Equals("light") || ship.Equals(""))
         {
             lightShip.SetActive(true);
             mediumShip.SetActive(false);
             heavyShip.SetActive(false);
 			SetShipType ("light");
         }
-        else if(ship.Equals("Medium"))
+        else if(ship.Equals("medium"))
         {
             lightShip.SetActive(false);
             mediumShip.SetActive(true);
             heavyShip.SetActive(false);
 			SetShipType ("medium");
         }
-        else if(ship.Equals("Heavy"))
+        else if(ship.Equals("heavy"))
         {
             lightShip.SetActive(false);
             mediumShip.SetActive(false);
