@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour {
 		{
 
             playerShip.transform.localScale = new Vector3 (0.2f, 0.2f, 0.2f);
-			mass = 112f;
+			mass = 64f;
             cannonDelay = 0.1f;
             cannonRechargeTime = 2;
             armor = 20;
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour {
 
             playerShip.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
 
-            mass = 168f;
+            mass = 96f;
             cannonDelay = 3f;
             cannonRechargeTime = 2;
             armor = 20f;
@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour {
 		{
             playerShip.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
 
-            mass = 224f;
+            mass = 128f;
             cannonDelay = 0.1f;
             cannonRechargeTime = 2;
             armor = 20;
